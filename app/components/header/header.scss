@@ -1,0 +1,23 @@
+header {
+  width: 100vw;
+  height: 8em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em 2em 1em 2em;
+  position: fixed;
+  background-color: #517664;
+
+  nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1em;
+  }
+
+  .link {
+    text-decoration: none;
+    color: white;
+  }
+}
