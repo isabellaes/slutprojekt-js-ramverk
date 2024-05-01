@@ -1,18 +1,14 @@
 import { ReactNode } from "react";
+import Card from "../card/Card";
 import "./list.scss";
 
 type ListPropsType = {
-  items: ReactNode[];
+  direction: "row" | "column";
+  children: ReactNode;
 };
 
-const List = (items: ListPropsType) => {
-  return (
-    <ul className="list">
-      {items.items.map((i) => {
-        return <li>{i}</li>;
-      })}
-    </ul>
-  );
+const List = ({ direction, children }: ListPropsType) => {
+  return <div className="list">{children}</div>;
 };
 
 export default List;
