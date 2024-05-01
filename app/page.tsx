@@ -1,9 +1,16 @@
 "use server";
 
 import { fetchBooksBySubject } from "./lib/functions";
+import Container from "./components/container/Container";
 
-export default async function Home() {
+const Home = async () => {
   const data = await fetchBooksBySubject("romance");
 
-  return <h1>Start Page</h1>;
-}
+  return (
+    <Container size="100vw">
+      <h1>Start Page</h1>
+    </Container>
+  );
+};
+
+export default Home;
