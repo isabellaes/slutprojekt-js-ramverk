@@ -15,7 +15,7 @@ const Header = () => {
           <h3>Hem</h3>
         </Link>
         <h2>|</h2>
-        <Link href={"/favourite/authors"} className="link">
+        <Link href={"/favourite/books"} className="link">
           <h3>Mina favoriter</h3>
         </Link>
         <h2>|</h2>
