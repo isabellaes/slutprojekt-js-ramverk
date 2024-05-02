@@ -1,4 +1,4 @@
-import { Root, Subject, Work } from "./types";
+import { Root, Subject } from "./types";
 
 export async function fetchBooksBySubject(query: string): Promise<Subject> {
   const apiUrl = `https://openlibrary.org/subjects/${encodeURIComponent(
