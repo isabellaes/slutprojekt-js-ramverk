@@ -1,9 +1,11 @@
+"use client";
+
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../../store";
-import { Work } from "../../types";
+import { Root } from "../../types";
 
 type BookStateType = {
-  books: Work[];
+  books: Root[];
 };
 
 const initialState: BookStateType = {
@@ -15,7 +17,7 @@ export const bookSlice = createSlice({
 
   initialState,
   reducers: {
-    addBook: (state, action: PayloadAction<Work>) => {
+    addBook: (state, action: PayloadAction<Root>) => {
       state.books.push(action.payload);
     },
     removeBook: (state, action: PayloadAction<string>) => {

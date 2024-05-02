@@ -1,9 +1,25 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Container from "@/app/components/container/Container";
 import { fetchWorkById } from "@/app/lib/functions";
 import "../workpage.scss";
+import Button from "@/app/components/button/Button";
+import { useParams } from "next/navigation";
 
-export default async function Page({ params }: { params: { id: string } }) {
-  const data = await fetchWorkById(params.id);
+export default function Page() {
+  const [data, setData] = useState<any>(null);
+  const params = useParams<{ id: string }>();
+  console.log(params.id);
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetchWorkById(params.id);
+      setData(data);
+    };
+    fetchData();
+  }, [params.id]);
+
+  if (!data) return <div>Loading...</div>;
 
   return (
     <div className="work-page">
@@ -13,8 +29,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           alt="cover"
         />
         <p>{data.title}</p>
-
-        <button>Add to favourite</button>
+        <Button work={data}></Button>
         <button>Mark as finished</button>
       </Container>
       <Container size="80vw">
