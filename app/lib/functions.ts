@@ -1,6 +1,6 @@
-import { Subject } from "./types";
+import { Root, Subject, Work } from "./types";
 
-export async function fetchBooksBySubject(query: string): Promise<any> {
+export async function fetchBooksBySubject(query: string): Promise<Subject> {
   const apiUrl = `https://openlibrary.org/subjects/${encodeURIComponent(
     query
   )}.json`;
@@ -11,27 +11,26 @@ export async function fetchBooksBySubject(query: string): Promise<any> {
       throw new Error("Network response was not ok.");
     }
     const data: Subject = await response.json();
-    return data;
+    return { ...data, works: data.works.slice(0, 8) };
   } catch (error) {
     console.error("Error fetching data:", error);
     throw error;
   }
 }
 
-/* export async function fetchBookCover() {
-  const apiUrl = `https://openlibrary.org/subjects/${encodeURIComponent(
+export async function fetchWorkById(query: string): Promise<Root> {
+  const apiUrl = `https://openlibrary.org/works/${encodeURIComponent(
     query
   )}.json`;
-
   try {
     const response = await fetch(apiUrl);
     if (!response.ok) {
       throw new Error("Network response was not ok.");
     }
-    const data: Subject = await response.json();
+    const data: Root = await response.json();
     return data;
   } catch (error) {
     console.error("Error fetching data:", error);
     throw error;
   }
-} */
+}
