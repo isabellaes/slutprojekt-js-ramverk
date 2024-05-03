@@ -83,3 +83,16 @@ export interface Type {
 export interface Language {
   key: string;
 }
+
+export type SearchResult = {
+  docs: Doc[];
+};
+
+export type Doc = {
+  author_name: string[];
+  cover_i: number;
+  edition_count: number;
+  first_publish_year: number;
+  key: string;
+  title: string;
+};
