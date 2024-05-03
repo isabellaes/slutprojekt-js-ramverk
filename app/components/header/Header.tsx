@@ -1,7 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import "./header.scss";
 import Image from "next/image";
 import logo from "./lib-logo.png";
+import Search from "./Search";
 
 const Header = () => {
   return (
@@ -24,9 +27,7 @@ const Header = () => {
         </Link>
       </nav>
       <div>
-        <h2>Search field</h2>
-        <input type="text" name="search" id="search" />
-        <button>Search</button>
+        <Search />
       </div>
     </header>
   );

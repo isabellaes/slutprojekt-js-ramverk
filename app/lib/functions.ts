@@ -38,7 +38,8 @@ export async function fetchWorkById(query: string): Promise<Root> {
 export async function fetchBookByTitle(query: string): Promise<any> {
   const apiUrl = `https://openlibrary.org/search.json?title=${encodeURIComponent(
     query
-  )}.json`;
+  )}`;
+  console.log(apiUrl);
   try {
     const response = await fetch(apiUrl);
     if (!response.ok) {
