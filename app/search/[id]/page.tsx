@@ -1,10 +1,10 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import Search from "../../components/header/Search";
 import { useEffect, useState } from "react";
 import { fetchBookByTitle } from "@/app/lib/functions";
-import { Doc, SearchResult } from "@/app/lib/types";
+import { Doc } from "@/app/lib/types";
+import Link from "next/link";
 
 export default function Page() {
   const [data, setData] = useState<Doc[]>();
@@ -24,7 +24,9 @@ export default function Page() {
     <>
       <h1>Search Page</h1>
       {data?.map((s) => (
-        <p>{s.title}</p>
+        <Link href={`${s.key}`}>
+          <p>{s.title}</p>
+        </Link>
       ))}
     </>
   );
