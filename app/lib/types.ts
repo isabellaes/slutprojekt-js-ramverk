@@ -36,3 +36,50 @@ export type Author = {
   author: { key: string };
   type: { key: string };
 };
+
+export interface RootEntry {
+  entries: Entry[];
+}
+
+export interface Entry {
+  works: string[];
+  key: string;
+  authors: Author[];
+  isbn_13: string[];
+  languages: Language[];
+  pagination: string;
+  publish_date: string;
+  publishers: string[];
+  source_records: string[];
+  subjects: string[];
+  title: string;
+  weight: string;
+  full_title: string;
+  covers: number[];
+  number_of_pages: number;
+}
+
+export interface BookEdition {
+  type: Type;
+  authors: [{ key: string }];
+  isbn_13: string[];
+  languages: Language[];
+  publish_date: string;
+  publishers: string[];
+  subjects: string[];
+  title: string;
+  full_title: string;
+  works: [{ key: string }];
+  key: string;
+  covers: number[];
+  number_of_pages: number;
+  description: any;
+}
+
+export interface Type {
+  key: string;
+}
+
+export interface Language {
+  key: string;
+}

@@ -25,6 +25,8 @@ const Header = () => {
       </nav>
       <div>
         <h2>Search field</h2>
+        <input type="text" name="search" id="search" />
+        <button>Search</button>
       </div>
     </header>
   );
