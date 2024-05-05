@@ -15,15 +15,19 @@ const Header = () => {
 
       <nav>
         <Link href={"/"} className="link">
-          <h3>Hem</h3>
+          <h3>Home</h3>
         </Link>
         <h2>|</h2>
         <Link href={"/favourite/books"} className="link">
-          <h3>Mina favoriter</h3>
+          <h3>My favourite books</h3>
+        </Link>
+        <h2>|</h2>
+        <Link href={"/favourite/authors"} className="link">
+          <h3>My favourite authors</h3>
         </Link>
         <h2>|</h2>
         <Link href={"/my-readlist"} className="link">
-          <h3>Mina lästa böcker</h3>
+          <h3>My read-list</h3>
         </Link>
       </nav>
       <div>

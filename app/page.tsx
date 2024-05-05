@@ -17,21 +17,23 @@ const Home = async () => {
   ];
 
   return (
-    <Container size="100vw">
-      <h1>Utforska biblioteket</h1>
-      {data.map((x) => (
-        <div key={x.key}>
-          <h2>{x.name}</h2>
-          <List key={x.key} direction="row">
-            {x.works.map((w) => (
-              <Link key={w.key} href={w.key}>
-                <Card key={w.key} data={w}></Card>
-              </Link>
-            ))}
-          </List>
-        </div>
-      ))}
-    </Container>
+    <div className="start-page">
+      <Container size="100vw">
+        <h1>Explore library</h1>
+        {data.map((x) => (
+          <div key={x.key}>
+            <h2>{x.name}</h2>
+            <List key={x.key} direction="row">
+              {x.works.map((w) => (
+                <Link key={w.key} href={w.key}>
+                  <Card key={w.key} data={w}></Card>
+                </Link>
+              ))}
+            </List>
+          </div>
+        ))}
+      </Container>
+    </div>
   );
 };
 
