@@ -1,7 +1,6 @@
 "use client";
 
-import { UseSelector, useSelector } from "react-redux";
-import { RootState } from "@/app/lib/features/store";
+import { useSelector } from "react-redux";
 import { selectBooks } from "@/app/lib/features/books/bookSlice";
 
 export default function Page() {
@@ -10,7 +9,7 @@ export default function Page() {
   return (
     <>
       <h1>Fav books</h1>
-      {books.map((b) => (
+      {books.favouriteBooks.map((b) => (
         <>
           <p>{b.title}</p>
           {b.covers ? (

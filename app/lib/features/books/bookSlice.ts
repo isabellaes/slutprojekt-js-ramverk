@@ -5,11 +5,13 @@ import type { RootState } from "../store";
 import { Root } from "../../utils/types";
 
 type BookStateType = {
-  books: Root[];
+  favouriteBooks: Root[];
+  myReadList: Root[];
 };
 
 const initialState: BookStateType = {
-  books: [],
+  favouriteBooks: [],
+  myReadList: [],
 };
 
 export const bookSlice = createSlice({
@@ -17,17 +19,23 @@ export const bookSlice = createSlice({
 
   initialState,
   reducers: {
-    addBook: (state, action: PayloadAction<Root>) => {
-      state.books.push(action.payload);
+    addToFavouriteBook: (state, action: PayloadAction<Root>) => {
+      state.favouriteBooks.push(action.payload);
+    },
+    addToReadListBook: (state, action: PayloadAction<Root>) => {
+      state.myReadList.push(action.payload);
     },
     removeBook: (state, action: PayloadAction<string>) => {
-      state.books = state.books.filter((b) => b.key != action.payload);
+      state.favouriteBooks = state.favouriteBooks.filter(
+        (b) => b.key != action.payload
+      );
     },
   },
 });
 
-export const { addBook, removeBook } = bookSlice.actions;
+export const { addToFavouriteBook, addToReadListBook, removeBook } =
+  bookSlice.actions;
 
-export const selectBooks = (state: RootState) => state.book.books;
+export const selectBooks = (state: RootState) => state.book;
 
 export default bookSlice.reducer;

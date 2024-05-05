@@ -5,9 +5,16 @@ import "../workpage.scss";
 import Button from "@/app/components/button/Button";
 import { useParams } from "next/navigation";
 import useFetchWorkAndEditionById from "@/app/lib/hooks/hooks";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/app/lib/features/store";
+import {
+  addToReadListBook,
+  addToFavouriteBook,
+} from "@/app/lib/features/books/bookSlice";
 
 export default function Page() {
   const params = useParams<{ id: string }>();
+  const dispatch = useDispatch<AppDispatch>();
 
   const { data, work } = useFetchWorkAndEditionById(params.id);
 
@@ -26,8 +33,15 @@ export default function Page() {
         )}
 
         <p>{work.title}</p>
-        <Button work={work}></Button>
-        <button>Mark as finished</button>
+
+        <Button
+          handleOnClick={() => dispatch(addToFavouriteBook(work))}
+          title=" Mark as favourite"
+        />
+        <Button
+          handleOnClick={() => dispatch(addToReadListBook(work))}
+          title="Mark as finished"
+        />
       </Container>
       <Container size="80vw">
         <h1>{work.title}</h1>
