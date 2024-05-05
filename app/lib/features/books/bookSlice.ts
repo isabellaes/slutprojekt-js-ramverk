@@ -25,7 +25,7 @@ export const bookSlice = createSlice({
     addToReadListBook: (state, action: PayloadAction<Root>) => {
       state.myReadList.push(action.payload);
     },
-    removeBook: (state, action: PayloadAction<string>) => {
+    removeBookFromFavourite: (state, action: PayloadAction<string>) => {
       state.favouriteBooks = state.favouriteBooks.filter(
         (b) => b.key != action.payload
       );
@@ -33,8 +33,11 @@ export const bookSlice = createSlice({
   },
 });
 
-export const { addToFavouriteBook, addToReadListBook, removeBook } =
-  bookSlice.actions;
+export const {
+  addToFavouriteBook,
+  addToReadListBook,
+  removeBookFromFavourite,
+} = bookSlice.actions;
 
 export const selectBooks = (state: RootState) => state.book;
 
