@@ -1,7 +1,7 @@
 "use client";
 
 import { UseSelector, useSelector } from "react-redux";
-import { RootState } from "@/app/lib/store";
+import { RootState } from "@/app/lib/features/store";
 import { selectBooks } from "@/app/lib/features/books/bookSlice";
 
 export default function Page() {

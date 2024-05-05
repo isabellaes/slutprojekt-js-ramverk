@@ -1,8 +1,8 @@
-import { fetchBooksBySubject } from "./lib/functions";
+import { fetchBooksBySubject } from "./lib/utils/functions";
 import Container from "./components/container/Container";
 import List from "./components/list/List";
 import Card from "./components/card/Card";
-import { Subject } from "./lib/types";
+import { Subject } from "./lib/utils/types";
 import Link from "next/link";
 
 const Home = async () => {

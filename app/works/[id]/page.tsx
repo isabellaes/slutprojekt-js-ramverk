@@ -2,11 +2,14 @@
 
 import { useState, useEffect } from "react";
 import Container from "@/app/components/container/Container";
-import { fetchWorkById, fetchWorkByIdAndEditions } from "@/app/lib/functions";
+import {
+  fetchWorkById,
+  fetchWorkByIdAndEditions,
+} from "@/app/lib/utils/functions";
 import "../workpage.scss";
 import Button from "@/app/components/button/Button";
 import { useParams } from "next/navigation";
-import { Entry, Root } from "@/app/lib/types";
+import { Entry, Root } from "@/app/lib/utils/types";
 
 export default function Page() {
   const [data, setData] = useState<Entry>();
@@ -56,10 +59,16 @@ export default function Page() {
         </p>
         <p>
           <span className="bold">Description:</span>
-          {typeof work.description === "string" ? (
-            <>{work.description}</>
+          {work.description ? (
+            <>
+              {typeof work.description === "string" ? (
+                <>{work.description}</>
+              ) : (
+                <>{work.description.value}</>
+              )}
+            </>
           ) : (
-            <>{work.description.value}</>
+            ""
           )}
         </p>
         <p>

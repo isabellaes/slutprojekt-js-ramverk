@@ -1,9 +1,9 @@
 "use Client";
 
-import { Root } from "@/app/lib/types";
+import { Root } from "@/app/lib/utils/types";
 import { addBook } from "@/app/lib/features/books/bookSlice";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/app/lib/store";
+import { AppDispatch } from "@/app/lib/features/store";
 
 type ButtonProps = {
   work: Root;

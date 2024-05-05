@@ -2,8 +2,8 @@
 
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { fetchBookByTitle } from "@/app/lib/functions";
-import { Doc } from "@/app/lib/types";
+import { fetchBookByTitle } from "@/app/lib/utils/functions";
+import { Doc } from "@/app/lib/utils/types";
 import Link from "next/link";
 
 export default function Page() {

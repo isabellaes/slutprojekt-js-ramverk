@@ -1,5 +1,5 @@
 import "./card.scss";
-import { Work } from "../../lib/types";
+import { Work } from "../../lib/utils/types";
 
 type CardPropsType = {
   data: Work;

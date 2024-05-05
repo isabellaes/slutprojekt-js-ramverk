@@ -1,8 +1,8 @@
 "use client";
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { RootState } from "../../store";
-import { Root } from "../../types";
+import type { RootState } from "../store";
+import { Root } from "../../utils/types";
 
 type BookStateType = {
   books: Root[];
