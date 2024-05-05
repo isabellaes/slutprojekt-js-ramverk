@@ -1,20 +1,14 @@
 "use Client";
 
-import { Root } from "@/app/lib/utils/types";
-import { addBook } from "@/app/lib/features/books/bookSlice";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/app/lib/features/store";
+import "./button.scss";
 
 type ButtonProps = {
-  work: Root;
+  handleOnClick: () => void;
+  title: string;
 };
 
-const Button = ({ work }: ButtonProps) => {
-  const dispatch = useDispatch<AppDispatch>();
-
-  return (
-    <button onClick={() => dispatch(addBook(work))}>Add to Fav-list</button>
-  );
+const Button = ({ handleOnClick, title }: ButtonProps) => {
+  return <button className="btn" onClick={handleOnClick}>{title}</button>;
 };
 
 export default Button;
