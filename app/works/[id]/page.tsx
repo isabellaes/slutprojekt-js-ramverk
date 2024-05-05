@@ -1,37 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Container from "@/app/components/container/Container";
-import {
-  fetchWorkById,
-  fetchWorkByIdAndEditions,
-} from "@/app/lib/utils/functions";
 import "../workpage.scss";
 import Button from "@/app/components/button/Button";
 import { useParams } from "next/navigation";
-import { Entry, Root } from "@/app/lib/utils/types";
+import useFetchWorkAndEditionById from "@/app/lib/hooks/hooks";
 
 export default function Page() {
-  const [data, setData] = useState<Entry>();
-  const [work, setWork] = useState<Root>();
   const params = useParams<{ id: string }>();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetchWorkById(params.id);
-      setWork(data);
-    };
-    fetchData();
-  }, [params.id]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetchWorkByIdAndEditions(params.id);
-
-      setData(data);
-    };
-    fetchData();
-  }, [params.id]);
+  const { data, work } = useFetchWorkAndEditionById(params.id);
 
   if (!work) return <div>Loading...</div>;
 
