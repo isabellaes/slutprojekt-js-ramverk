@@ -20,13 +20,13 @@ export default function Page() {
       <h1>Fav books</h1>
       <List direction="column">
         {books.favouriteBooks.map((b) => (
-          <>
+          <div style={{ display: "flex", flexDirection: "column" }}>
             <Card key={b.key} title={b.title} img={b.covers[0]}></Card>
             <Button
               handleOnClick={() => dispatch(removeBookFromFavourite(b.key))}
               title="Remove"
             ></Button>
-          </>
+          </div>
         ))}
       </List>
     </Container>
