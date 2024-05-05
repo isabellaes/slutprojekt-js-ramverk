@@ -4,6 +4,7 @@ import List from "@/app/components/list/List";
 import Card from "@/app/components/card/Card";
 import { Subject } from "@/app/lib/utils/types";
 import Link from "next/link";
+import "./style/startPage.scss";
 
 const Home = async () => {
   const data_subject_romance: Subject = await fetchBooksBySubject("romance");
@@ -18,21 +19,19 @@ const Home = async () => {
 
   return (
     <div className="start-page">
-      <Container size="100vw">
-        <h1>Explore library</h1>
-        {data.map((x) => (
-          <div key={x.key}>
-            <h2>{x.name}</h2>
-            <List key={x.key} direction="row">
-              {x.works.map((w) => (
-                <Link key={w.key} href={w.key}>
-                  <Card key={w.key} data={w}></Card>
-                </Link>
-              ))}
-            </List>
-          </div>
-        ))}
-      </Container>
+      <h1>Explore library</h1>
+      {data.map((x) => (
+        <div key={x.key}>
+          <h2>{x.name}</h2>
+          <List key={x.key} direction="row">
+            {x.works.map((w) => (
+              <Link key={w.key} href={w.key}>
+                <Card key={w.key} title={w.title} img={w.cover_id}></Card>
+              </Link>
+            ))}
+          </List>
+        </div>
+      ))}
     </div>
   );
 };

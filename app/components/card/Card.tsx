@@ -1,18 +1,19 @@
 import "./card.scss";
-import { Work } from "../../lib/utils/types";
+import { Root, Work } from "../../lib/utils/types";
 
 type CardPropsType = {
-  data: Work;
+  title: string;
+  img: number;
 };
 
-const Card = ({ data }: CardPropsType) => {
+const Card = ({ title, img }: CardPropsType) => {
   return (
     <div>
       <img
-        src={`https://covers.openlibrary.org/b/id/${data.cover_id}-M.jpg`}
+        src={`https://covers.openlibrary.org/b/id/${img}-M.jpg`}
         alt="cover"
       />
-      <p>{data.title}</p>
+      <p>{title}</p>
     </div>
   );
 };
