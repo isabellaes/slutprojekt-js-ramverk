@@ -4,7 +4,7 @@ import Container from "@/app/components/container/Container";
 import "../workpage.scss";
 import Button from "@/app/components/button/Button";
 import { useParams } from "next/navigation";
-import useFetchWorkAndEditionById from "@/app/lib/hooks/hooks";
+import useFetchWork from "@/app/lib/hooks/useFetchWork";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/app/lib/features/store";
 import {
@@ -16,7 +16,7 @@ export default function Page() {
   const params = useParams<{ id: string }>();
   const dispatch = useDispatch<AppDispatch>();
 
-  const { book } = useFetchWorkAndEditionById(params.id);
+  const { book } = useFetchWork(params.id);
 
   if (!book) return <div>Loading...</div>;
 

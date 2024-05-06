@@ -11,9 +11,5 @@ export const useToggleModal = (defaultValue: boolean) => {
     }
   };
 
-  const reset = () => {
-    setToggle(defaultValue);
-  };
-
-  return { open, toggle, reset };
+  return { open, toggle };
 };
