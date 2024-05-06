@@ -1,5 +1,5 @@
 import {
-  Root,
+  Book,
   Subject,
   RootEntry,
   Entry,
@@ -25,7 +25,7 @@ export async function fetchBooksBySubject(query: string): Promise<Subject> {
   }
 }
 
-export async function fetchWorkById(query: string): Promise<Root> {
+export async function fetchWorkById(query: string): Promise<Book> {
   const apiUrl = `https://openlibrary.org/works/${encodeURIComponent(
     query
   )}.json`;
@@ -34,7 +34,7 @@ export async function fetchWorkById(query: string): Promise<Root> {
     if (!response.ok) {
       throw new Error("Network response was not ok.");
     }
-    const data: Root = await response.json();
+    const data: Book = await response.json();
     return data;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -61,7 +61,7 @@ export async function fetchBookByTitle(query: string): Promise<Doc[]> {
   }
 }
 
-export async function fetchWorkByIdAndEditions(query: string): Promise<Entry> {
+export async function fetchNumberOfPages(query: string): Promise<number> {
   const apiUrl = `https://openlibrary.org/works/${encodeURIComponent(
     query
   )}/editions.json`;
@@ -71,7 +71,7 @@ export async function fetchWorkByIdAndEditions(query: string): Promise<Entry> {
       throw new Error("Network response was not ok.");
     }
     const data: RootEntry = await response.json();
-    return data.entries[0];
+    return data.entries[0].number_of_pages;
   } catch (error) {
     console.error("Error fetching data:", error);
     throw error;
