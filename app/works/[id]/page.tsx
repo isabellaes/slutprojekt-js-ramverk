@@ -16,62 +16,60 @@ export default function Page() {
   const params = useParams<{ id: string }>();
   const dispatch = useDispatch<AppDispatch>();
 
-  const { data, work } = useFetchWorkAndEditionById(params.id);
+  const { book } = useFetchWorkAndEditionById(params.id);
 
-  if (!work) return <div>Loading...</div>;
+  if (!book) return <div>Loading...</div>;
 
   return (
     <div className="work-page">
       <Container size="20vw">
-        {work.covers ? (
+        {book.covers ? (
           <img
-            src={`https://covers.openlibrary.org/b/id/${work.covers[0]}-M.jpg`}
+            src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-M.jpg`}
             alt="cover"
           />
         ) : (
           <img></img>
         )}
 
-        <p>{work.title}</p>
+        <p>{book.title}</p>
 
         <Button
-          handleOnClick={() => dispatch(addToFavouriteBook(work))}
+          handleOnClick={() => dispatch(addToFavouriteBook(book))}
           title=" Mark as favourite"
         />
         <Button
-          handleOnClick={() => dispatch(addToReadListBook(work))}
+          handleOnClick={() => dispatch(addToReadListBook(book))}
           title="Mark as finished"
         />
       </Container>
       <Container size="80vw">
-        <h1>{work.title}</h1>
+        <h1>{book.title}</h1>
 
         <p>
-          <span className="bold">Subjects:</span> {work.subjects}
+          <span className="bold">Subjects:</span> {book.subjects}
         </p>
         <p>
           <span className="bold">Description:</span>
-          {work.description ? (
+          {book.description ? (
             <>
-              {typeof work.description === "string" ? (
-                <>{work.description}</>
+              {typeof book.description === "string" ? (
+                <>{book.description}</>
               ) : (
-                <>{work.description.value}</>
+                <>{book.description.value}</>
               )}
             </>
           ) : (
             ""
           )}
         </p>
+
         <p>
-          <span className="bold">Pages:</span> {data?.number_of_pages}
-        </p>
-        <p>
-          <span className="bold">Published:</span> {work.first_publish_date}
+          <span className="bold">Published:</span> {book.first_publish_date}
         </p>
         <p>
           <span className="bold">First sentence:</span>{" "}
-          {work.first_sentence?.value}
+          {book.first_sentence?.value}
         </p>
       </Container>
     </div>

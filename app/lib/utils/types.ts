@@ -12,7 +12,7 @@ type Work = {
   cover_edition_key: string;
 };
 
-export type Root = {
+export type Book = {
   authors: Author[];
   covers: number[];
   description: string | { type: string; value: string };
@@ -22,14 +22,8 @@ export type Root = {
     value: string;
   };
   key: string;
-  lc_classifications: string[];
-  subject_people: string[];
-  subject_places: string[];
-  subject_times: string[];
   subjects: string[];
   title: string;
-  latest_revision: number;
-  revision: number;
 };
 
 export type Author = {
@@ -43,10 +37,6 @@ export interface RootEntry {
 
 export interface Entry {
   number_of_pages: number;
-}
-
-export interface Language {
-  key: string;
 }
 
 export type SearchResult = {

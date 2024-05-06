@@ -2,11 +2,11 @@
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
-import { Review, Root } from "../../utils/types";
+import { Review, Book } from "../../utils/types";
 
 type BookStateType = {
-  favouriteBooks: Root[];
-  myReadList: Root[];
+  favouriteBooks: Book[];
+  myReadList: Book[];
   reviews: Review[];
 };
 
@@ -21,10 +21,10 @@ export const bookSlice = createSlice({
 
   initialState,
   reducers: {
-    addToFavouriteBook: (state, action: PayloadAction<Root>) => {
+    addToFavouriteBook: (state, action: PayloadAction<Book>) => {
       state.favouriteBooks.push(action.payload);
     },
-    addToReadListBook: (state, action: PayloadAction<Root>) => {
+    addToReadListBook: (state, action: PayloadAction<Book>) => {
       state.myReadList.push(action.payload);
     },
     removeBookFromFavourite: (state, action: PayloadAction<string>) => {

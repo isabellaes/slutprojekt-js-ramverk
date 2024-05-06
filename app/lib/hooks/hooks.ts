@@ -5,22 +5,21 @@ import type {
   RootState,
 } from "@/app/lib/features/store";
 import { useEffect, useState } from "react";
-import { Entry, Root } from "@/app/lib/utils/types";
-import { fetchWorkById, fetchWorkByIdAndEditions } from "@/app/lib/utils/api";
+import { Book } from "@/app/lib/utils/types";
+import { fetchWorkById } from "@/app/lib/utils/api";
 
 export const useAppDispatch = useDispatch.withTypes<AppDispatch>();
 export const useAppSelector = useSelector.withTypes<RootState>();
 export const useAppStore = useStore.withTypes<AppStore>();
 
 const useFetchWorkAndEditionById = (id: string) => {
-  const [work, setWork] = useState<Root>();
-  const [data, setData] = useState<Entry>();
+  const [book, setBook] = useState<Book>();
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchWorkById(id);
       if (!ignore) {
-        setWork(data);
+        setBook(data);
       }
     };
     let ignore = false;
@@ -30,21 +29,7 @@ const useFetchWorkAndEditionById = (id: string) => {
     };
   }, []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetchWorkByIdAndEditions(id);
-      if (!ignore) {
-        setData(data);
-      }
-    };
-    let ignore = false;
-    fetchData();
-    return () => {
-      ignore = true;
-    };
-  }, []);
-
-  return { work, data };
+  return { book };
 };
 
 export default useFetchWorkAndEditionById;
