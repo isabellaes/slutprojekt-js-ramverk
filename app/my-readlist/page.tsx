@@ -35,7 +35,7 @@ export default function Page() {
       </List>
       {open && selectedBook ? (
         <Modal>
-          <Form key={selectedBook}></Form>
+          <Form key={selectedBook} handleClose={() => toggle()}></Form>
         </Modal>
       ) : (
         <></>
