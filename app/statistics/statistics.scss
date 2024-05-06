@@ -1,0 +1,18 @@
+.statistics {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  img {
+    max-height: 150px;
+  }
+
+  .bold {
+    font-weight: bolder;
+  }
+
+  .list-item {
+    display: flex;
+    flex-direction: column;
+  }
+}

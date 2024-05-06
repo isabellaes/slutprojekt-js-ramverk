@@ -4,9 +4,20 @@
 
   img {
     max-width: 200px;
+    padding: 0.5em;
   }
 
   .bold {
     font-weight: bolder;
+  }
+
+  h1,
+  p {
+    padding-bottom: 0.5em;
+  }
+  .row {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
   }
 }

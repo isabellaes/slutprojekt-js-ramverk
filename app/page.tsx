@@ -18,11 +18,11 @@ const Home = async () => {
   ];
 
   return (
-    <div className="start-page">
+    <Container>
       <h1>Explore library</h1>
       {data.map((x) => (
         <div key={x.key}>
-          <h2>{x.name}</h2>
+          <h3>{x.name.toLocaleUpperCase()}</h3>
           <List key={x.key} direction="row">
             {x.works.map((w) => (
               <Link key={w.key} href={w.key}>
@@ -32,7 +32,7 @@ const Home = async () => {
           </List>
         </div>
       ))}
-    </div>
+    </Container>
   );
 };
 

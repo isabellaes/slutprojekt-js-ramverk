@@ -20,17 +20,17 @@ export default function Page() {
     setSelectedBook(key);
   }
   return (
-    <Container size="100vw">
+    <Container>
       <h1>Readlist books</h1>
       <List direction="row">
         {books.myReadList.map((b) => (
-          <>
+          <div>
             <Card key={b.key} title={b.title} img={b.covers[0]} />
             <Button
               handleOnClick={() => handleAddReview(b.key)}
               title="Add review"
             />
-          </>
+          </div>
         ))}
       </List>
       {open && selectedBook ? (

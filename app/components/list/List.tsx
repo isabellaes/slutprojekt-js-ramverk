@@ -8,7 +8,11 @@ type ListPropsType = {
 };
 
 const List = ({ direction, children }: ListPropsType) => {
-  return <div className="list">{children}</div>;
+  return (
+    <div className={direction === "row" ? "list row" : "list column"}>
+      {children}
+    </div>
+  );
 };
 
 export default List;

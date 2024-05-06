@@ -3,9 +3,12 @@
   padding: 1em;
   background-color: #cacfd661;
   gap: 1em;
+  justify-content: center;
+  align-items: center;
 
   &.row {
     flex-direction: row;
+    flex-wrap: wrap;
   }
 
   &.column {
