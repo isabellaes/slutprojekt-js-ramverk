@@ -1,20 +1,28 @@
+import { addReview } from "@/app/lib/features/books/bookSlice";
+import { AppDispatch } from "@/app/lib/features/store";
+import { Review } from "@/app/lib/utils/types";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 type FormPropsType = {
   key: string;
-  numberOfPages: number;
 };
 
-const Form = ({ key, numberOfPages }: FormPropsType) => {
+const Form = ({ key }: FormPropsType) => {
   const [review, setReview] = useState<string>();
   const [rating, setRating] = useState<string>();
 
+  const dispatch = useDispatch<AppDispatch>();
+
   function handleOnSubmit() {
-    //dispatch form
+    if (review && rating) {
+      const newReview: Review = { key: key, rating: rating, text: review };
+      dispatch(addReview(newReview));
+    }
   }
 
   return (
-    <form action="">
+    <form>
       <label htmlFor="review">Review</label>
       <textarea
         name="review"
@@ -31,7 +39,14 @@ const Form = ({ key, numberOfPages }: FormPropsType) => {
         id="rating"
         onChange={(e) => setRating(e.currentTarget.value)}
       />
-      <button onClick={() => handleOnSubmit()}>Submit</button>
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          handleOnSubmit();
+        }}
+      >
+        Submit
+      </button>
     </form>
   );
 };

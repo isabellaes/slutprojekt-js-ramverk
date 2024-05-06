@@ -2,16 +2,18 @@
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
-import { Root } from "../../utils/types";
+import { Review, Root } from "../../utils/types";
 
 type BookStateType = {
   favouriteBooks: Root[];
   myReadList: Root[];
+  reviews: Review[];
 };
 
 const initialState: BookStateType = {
   favouriteBooks: [],
   myReadList: [],
+  reviews: [],
 };
 
 export const bookSlice = createSlice({
@@ -30,6 +32,9 @@ export const bookSlice = createSlice({
         (b) => b.key != action.payload
       );
     },
+    addReview: (state, action: PayloadAction<Review>) => {
+      state.reviews.push(action.payload);
+    },
   },
 });
 
@@ -37,6 +42,7 @@ export const {
   addToFavouriteBook,
   addToReadListBook,
   removeBookFromFavourite,
+  addReview,
 } = bookSlice.actions;
 
 export const selectBooks = (state: RootState) => state.book;

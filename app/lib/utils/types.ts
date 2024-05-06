@@ -61,3 +61,9 @@ export type Doc = {
   key: string;
   title: string;
 };
+
+export type Review = {
+  key: string;
+  rating: string;
+  text: string;
+};
