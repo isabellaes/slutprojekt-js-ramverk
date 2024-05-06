@@ -3,8 +3,11 @@ import {
   Subject,
   RootEntry,
   Entry,
-  SearchResult,
-  Doc,
+  SearchResultBook,
+  SearchResultAuthor,
+  BookDoc,
+  AuthorDoc,
+  Author,
 } from "@/app/lib/utils/types";
 
 export async function fetchBooksBySubject(query: string): Promise<Subject> {
@@ -42,7 +45,7 @@ export async function fetchWorkById(query: string): Promise<Book> {
   }
 }
 
-export async function fetchBookByTitle(query: string): Promise<Doc[]> {
+export async function fetchBookByTitle(query: string): Promise<BookDoc[]> {
   const apiUrl = `https://openlibrary.org/search.json?title=${encodeURIComponent(
     query
   )}`;
@@ -52,7 +55,7 @@ export async function fetchBookByTitle(query: string): Promise<Doc[]> {
     if (!response.ok) {
       throw new Error("Network response was not ok.");
     }
-    const data: SearchResult = await response.json();
+    const data: SearchResultBook = await response.json();
 
     return data.docs.slice(0, 10);
   } catch (error) {
@@ -72,6 +75,40 @@ export async function fetchNumberOfPages(query: string): Promise<number> {
     }
     const data: RootEntry = await response.json();
     return data.entries[0].number_of_pages;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+}
+
+export async function fetchAuthorById(query: string): Promise<Author> {
+  const apiUrl = `https://openlibrary.org/authors/${encodeURIComponent(
+    query
+  )}.json`;
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error("Network response was not ok.");
+    }
+    const data: Author = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+}
+
+export async function fetchAuthorByName(query: string): Promise<AuthorDoc[]> {
+  const apiUrl = `https://openlibrary.org/search/authors.json?q=${query}`;
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error("Network response was not ok.");
+    }
+    const data: SearchResultAuthor = await response.json();
+    console.log(apiUrl);
+    console.log(data);
+    return data.docs;
   } catch (error) {
     console.error("Error fetching data:", error);
     throw error;
