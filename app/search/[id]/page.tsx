@@ -14,7 +14,6 @@ export default function Page() {
     const fetchData = async () => {
       const data: Doc[] = await fetchBookByTitle(params.id);
       setData(data);
-      console.log(data);
     };
     fetchData();
   }, [params.id]);

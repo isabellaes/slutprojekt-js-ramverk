@@ -53,7 +53,7 @@ export async function fetchBookByTitle(query: string): Promise<Doc[]> {
       throw new Error("Network response was not ok.");
     }
     const data: SearchResult = await response.json();
-    console.log(data);
+
     return data.docs.slice(0, 10);
   } catch (error) {
     console.error("Error fetching data:", error);
