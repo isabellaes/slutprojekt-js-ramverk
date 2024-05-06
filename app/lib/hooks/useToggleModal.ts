@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 export const useToggleModal = (defaultValue: boolean) => {
-  const [on, setToggle] = useState<boolean>(defaultValue);
+  const [open, setToggle] = useState<boolean>(defaultValue);
 
   const toggle = () => {
-    if (on) {
+    if (open) {
       setToggle(false);
     } else {
       setToggle(true);
@@ -15,5 +15,5 @@ export const useToggleModal = (defaultValue: boolean) => {
     setToggle(defaultValue);
   };
 
-  return { on, toggle, reset };
+  return { open, toggle, reset };
 };
