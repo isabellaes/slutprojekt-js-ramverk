@@ -38,7 +38,7 @@ export default function Page() {
     <div className="work-page">
       <Container>
         <div className="row">
-          <div>
+          <div className="item">
             {book.covers ? (
               <img
                 src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-M.jpg`}
@@ -47,20 +47,23 @@ export default function Page() {
             ) : (
               <img></img>
             )}
-            <Button
-              handleOnClick={() => dispatch(addToFavouriteBook(book))}
-              title=" Mark as favourite"
-            />
-            <Button
-              handleOnClick={() => handleAddToReadList(book)}
-              title="Mark as finished"
-            />
+            <div className="buttons">
+              {" "}
+              <Button
+                handleOnClick={() => dispatch(addToFavouriteBook(book))}
+                title="Add to favourite"
+              />
+              <Button
+                handleOnClick={() => handleAddToReadList(book)}
+                title="Mark as finished"
+              />
+            </div>
           </div>
 
-          <div>
+          <div className="item">
             <h1>{book.title}</h1>
-            <p>
-              <span className="bold">Description:</span>
+            <p className="description">
+              <span className="bold">Description: </span>
               {book.description ? (
                 <>
                   {typeof book.description === "string" ? (
@@ -75,7 +78,8 @@ export default function Page() {
             </p>
 
             <p>
-              <span className="bold">Published:</span> {book.first_publish_date}
+              <span className="bold">Published: </span>{" "}
+              {book.first_publish_date}
             </p>
             <p>
               <span className="bold">First sentence:</span>
