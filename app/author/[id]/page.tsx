@@ -9,7 +9,6 @@ import { fetchAuthorById } from "@/app/lib/utils/api";
 import { Author } from "@/app/lib/utils/types";
 import Button from "@/app/components/button/Button";
 import blankprofile from "./blank-profile-picture-973460_640.png";
-import Image from "next/image";
 import "./authorpage.scss";
 
 export default function Page() {

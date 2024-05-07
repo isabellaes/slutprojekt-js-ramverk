@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { fetchBookByTitle } from "@/app/lib/utils/api";
 import { BookDoc } from "@/app/lib/utils/types";
 import Link from "next/link";
+import Container from "@/app/components/container/Container";
 
 export default function Page() {
   const [data, setData] = useState<BookDoc[]>();
@@ -19,13 +20,19 @@ export default function Page() {
   }, [params.id]);
 
   return (
-    <>
+    <Container>
       <h1>Search Page</h1>
-      {data?.map((s) => (
-        <Link href={`${s.key}`}>
-          <p>{s.title}</p>
-        </Link>
-      ))}
-    </>
+      {data ? (
+        <>
+          {data?.map((s) => (
+            <Link href={`${s.key}`}>
+              <p>{s.title}</p>
+            </Link>
+          ))}
+        </>
+      ) : (
+        <p>Loading...</p>
+      )}
+    </Container>
   );
 }

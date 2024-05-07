@@ -2,7 +2,6 @@ import {
   Book,
   Subject,
   RootEntry,
-  Entry,
   SearchResultBook,
   SearchResultAuthor,
   BookDoc,
@@ -106,8 +105,6 @@ export async function fetchAuthorByName(query: string): Promise<AuthorDoc[]> {
       throw new Error("Network response was not ok.");
     }
     const data: SearchResultAuthor = await response.json();
-    console.log(apiUrl);
-    console.log(data);
     return data.docs;
   } catch (error) {
     console.error("Error fetching data:", error);
