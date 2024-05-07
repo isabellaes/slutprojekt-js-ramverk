@@ -15,13 +15,19 @@ export default function Page() {
   const books = useSelector(selectBooks);
   const { open, toggle } = useToggleModal(false);
 
+  function calculateTotalNumberOfPages(): number {
+    return books.readList.reduce((total, book) => {
+      return total + book.numberOfPages;
+    }, 0);
+  }
+
   return (
     <div className="statistics">
       <Container>
         <h1>Statistics</h1>
 
         <p>Number of books read: {books.readList.length}</p>
-        <p>Total pages: </p>
+        <p>Total pages: {calculateTotalNumberOfPages()} </p>
 
         <h1>Finished books</h1>
         <List direction="row">
