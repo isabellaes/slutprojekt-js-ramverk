@@ -89,3 +89,12 @@ export type AuthorDoc = {
   work_count: number;
   _version_: number;
 };
+
+export type ReadBook = {
+  key: string;
+  rating: string;
+  comment: string;
+  title: string;
+  covers: number[];
+  numberOfPages: number;
+};
