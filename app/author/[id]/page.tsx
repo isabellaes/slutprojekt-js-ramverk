@@ -8,6 +8,9 @@ import { useEffect, useState } from "react";
 import { fetchAuthorById } from "@/app/lib/utils/api";
 import { Author } from "@/app/lib/utils/types";
 import Button from "@/app/components/button/Button";
+import blankprofile from "./blank-profile-picture-973460_640.png";
+import Image from "next/image";
+import "./authorpage.scss";
 
 export default function Page() {
   const [data, setData] = useState<Author>();
@@ -26,15 +29,24 @@ export default function Page() {
     return <p>Loading...</p>;
   }
   return (
-    <Container>
-      <h1>{data.name}</h1>
-      <p>{data.bio}</p>
-      <p>{data.personal_name}</p>
-
-      <img
-        src={`https://covers.openlibrary.org/a/${data.photos[0]}/M.jpg`}
-        alt=""
-      />
-    </Container>
+    <div className="author">
+      <Container>
+        <div className="row">
+          {data.photos ? (
+            <img
+              src={`https://covers.openlibrary.org/a/id/${data.photos[0]}-L.jpg`}
+              alt=""
+            />
+          ) : (
+            <img src={blankprofile.src} alt="" />
+          )}
+          <div>
+            <h1>{data.name}</h1>
+            <p>{data.personal_name}</p>
+            <p>{data.bio}</p>
+          </div>
+        </div>
+      </Container>
+    </div>
   );
 }
