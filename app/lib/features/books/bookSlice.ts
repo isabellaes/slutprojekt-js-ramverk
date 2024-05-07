@@ -2,18 +2,18 @@
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
-import { Review, Book } from "../../utils/types";
+import { Review, Book, ReadBook } from "../../utils/types";
 
 type BookStateType = {
   favouriteBooks: Book[];
-  myReadList: Book[];
   reviews: Review[];
+  readList: ReadBook[];
 };
 
 const initialState: BookStateType = {
   favouriteBooks: [],
-  myReadList: [],
   reviews: [],
+  readList: [],
 };
 
 export const bookSlice = createSlice({
@@ -24,25 +24,36 @@ export const bookSlice = createSlice({
     addToFavouriteBook: (state, action: PayloadAction<Book>) => {
       state.favouriteBooks.push(action.payload);
     },
-    addToReadListBook: (state, action: PayloadAction<Book>) => {
-      state.myReadList.push(action.payload);
-    },
+
     removeBookFromFavourite: (state, action: PayloadAction<string>) => {
       state.favouriteBooks = state.favouriteBooks.filter(
         (b) => b.key != action.payload
       );
     },
     addReview: (state, action: PayloadAction<Review>) => {
-      state.reviews.push(action.payload);
+      state.readList = state.readList.map((r) => {
+        if (r.key === action.payload.key) {
+          return {
+            ...r,
+            rating: action.payload.rating,
+            comment: action.payload.text,
+          };
+        } else {
+          return r;
+        }
+      });
+    },
+    addToReadList: (state, action: PayloadAction<ReadBook>) => {
+      state.readList.push(action.payload);
     },
   },
 });
 
 export const {
   addToFavouriteBook,
-  addToReadListBook,
   removeBookFromFavourite,
   addReview,
+  addToReadList,
 } = bookSlice.actions;
 
 export const selectBooks = (state: RootState) => state.book;
