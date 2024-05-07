@@ -22,7 +22,12 @@ export const bookSlice = createSlice({
   initialState,
   reducers: {
     addToFavouriteBook: (state, action: PayloadAction<Book>) => {
-      state.favouriteBooks.push(action.payload);
+      const exists = state.favouriteBooks.find(
+        (b) => b.key === action.payload.key
+      );
+      if (!exists) {
+        state.favouriteBooks.push(action.payload);
+      }
     },
 
     removeBookFromFavourite: (state, action: PayloadAction<string>) => {
@@ -44,7 +49,10 @@ export const bookSlice = createSlice({
       });
     },
     addToReadList: (state, action: PayloadAction<ReadBook>) => {
-      state.readList.push(action.payload);
+      const exists = state.readList.find((b) => b.key === action.payload.key);
+      if (!exists) {
+        state.readList.push(action.payload);
+      }
     },
   },
 });

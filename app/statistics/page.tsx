@@ -21,6 +21,26 @@ export default function Page() {
     }, 0);
   }
 
+  function calculateTotalNumberOfReviews(): number {
+    return books.readList.reduce((total, book) => {
+      if (book.comment && book.rating) {
+        return total + 1;
+      } else {
+        return total;
+      }
+    }, 0);
+  }
+
+  function calculateAverageRating(): number {
+    return books.readList.reduce((total, book) => {
+      if (book.comment && book.rating) {
+        return total + Number(book.rating);
+      } else {
+        return total;
+      }
+    }, 0);
+  }
+
   return (
     <div className="statistics">
       <Container>
@@ -28,6 +48,15 @@ export default function Page() {
 
         <p>Number of books read: {books.readList.length}</p>
         <p>Total pages: {calculateTotalNumberOfPages()} </p>
+        <p>Number of bookreviews: {calculateTotalNumberOfReviews()}</p>
+        <p>
+          Average number of pages:{" "}
+          {calculateTotalNumberOfPages() / books.readList.length || 0}
+        </p>
+        <p>
+          Average rating:{" "}
+          {calculateAverageRating() / calculateTotalNumberOfReviews() || 0}
+        </p>
 
         <h1>Finished books</h1>
         <List direction="row">
