@@ -13,6 +13,12 @@
 
   .list-item {
     display: flex;
+    flex-direction: row;
+  }
+
+  .review {
+    display: flex;
     flex-direction: column;
+    padding-left: 1em;
   }
 }

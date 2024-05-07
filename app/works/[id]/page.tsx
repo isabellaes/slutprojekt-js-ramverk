@@ -8,15 +8,29 @@ import useFetchWork from "@/app/lib/hooks/useFetchWork";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/app/lib/features/store";
 import {
-  addToReadListBook,
   addToFavouriteBook,
+  addToReadList,
 } from "@/app/lib/features/books/bookSlice";
+import { Book, ReadBook } from "@/app/lib/utils/types";
 
 export default function Page() {
   const params = useParams<{ id: string }>();
   const dispatch = useDispatch<AppDispatch>();
 
   const { book } = useFetchWork(params.id);
+
+  function handleAddToReadList(book: Book) {
+    const bookToAdd: ReadBook = {
+      key: book.key,
+      rating: "",
+      comment: "",
+      title: book.title,
+      covers: book.covers,
+      numberOfPages: 278,
+    };
+
+    dispatch(addToReadList(bookToAdd));
+  }
 
   if (!book) return <div>Loading...</div>;
 
@@ -38,7 +52,7 @@ export default function Page() {
               title=" Mark as favourite"
             />
             <Button
-              handleOnClick={() => dispatch(addToReadListBook(book))}
+              handleOnClick={() => handleAddToReadList(book)}
               title="Mark as finished"
             />
           </div>
@@ -64,7 +78,7 @@ export default function Page() {
               <span className="bold">Published:</span> {book.first_publish_date}
             </p>
             <p>
-              <span className="bold">First sentence:</span>{" "}
+              <span className="bold">First sentence:</span>
               {book.first_sentence?.value}
             </p>
 
