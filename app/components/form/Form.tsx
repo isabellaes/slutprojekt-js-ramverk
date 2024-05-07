@@ -4,25 +4,23 @@ import { Review } from "@/app/lib/utils/types";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import "./form.scss";
-import Button from "../button/Button";
 import CancelIcon from "@mui/icons-material/Cancel";
 
 type FormPropsType = {
-  key: string;
+  id: string;
   handleClose: () => void;
 };
 
-const Form = ({ key, handleClose }: FormPropsType) => {
-  const [review, setReview] = useState<string>();
-  const [rating, setRating] = useState<string>();
+const Form = ({ id, handleClose }: FormPropsType) => {
+  const [review, setReview] = useState<string>("");
+  const [rating, setRating] = useState<string>("");
 
   const dispatch = useDispatch<AppDispatch>();
 
   function handleOnSubmit() {
     if (review && rating) {
-      const newReview: Review = { key: key, rating: rating, text: review };
+      const newReview: Review = { key: id, rating: rating, text: review };
       dispatch(addReview(newReview));
-      handleClose();
     }
   }
 
@@ -33,7 +31,14 @@ const Form = ({ key, handleClose }: FormPropsType) => {
       </div>
 
       <h2>Add review</h2>
-      <form>
+      <p>{id}</p>
+
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleOnSubmit();
+        }}
+      >
         <label htmlFor="review">Comment</label>
         <textarea
           name="review"
@@ -50,12 +55,8 @@ const Form = ({ key, handleClose }: FormPropsType) => {
           id="rating"
           onChange={(e) => setRating(e.currentTarget.value)}
         />
-        <Button
-          handleOnClick={() => {
-            handleOnSubmit();
-          }}
-          title="Submit"
-        ></Button>
+
+        <input type="submit" value="Submit" />
       </form>
     </div>
   );
