@@ -1,10 +1,11 @@
 "use client";
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { RootState } from "../store";
+import { RootState } from "../store";
+import { Author } from "../../utils/types";
 
 type AuthorStateType = {
-  authors: [];
+  authors: Author[];
 };
 
 const initialState: AuthorStateType = {
@@ -16,8 +17,13 @@ export const authorSlice = createSlice({
 
   initialState,
   reducers: {
-    addAuthor: (state, action: PayloadAction<any>) => {},
-    removeAuthor: (state, action: PayloadAction<string>) => {},
+    addAuthor: (state, action: PayloadAction<Author>) => {
+      console.log(action.payload);
+      state.authors.push(action.payload);
+    },
+    removeAuthor: (state, action: PayloadAction<string>) => {
+      state.authors = state.authors.filter((a) => a.key != action.payload);
+    },
   },
 });
 

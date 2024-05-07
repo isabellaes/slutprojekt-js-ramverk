@@ -10,39 +10,46 @@ import { Author } from "@/app/lib/utils/types";
 import Button from "@/app/components/button/Button";
 import blankprofile from "./blank-profile-picture-973460_640.png";
 import "./authorpage.scss";
+import { addAuthor } from "@/app/lib/features/authors/authorSlice";
 
 export default function Page() {
-  const [data, setData] = useState<Author>();
+  const [author, setAuthor] = useState<Author>();
   const params = useParams<{ id: string }>();
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     const fetchData = async () => {
       const data: Author = await fetchAuthorById(params.id);
-      setData(data);
+      setAuthor(data);
     };
     fetchData();
   }, [params.id]);
 
-  if (!data) {
+  if (!author) {
     return <p>Loading...</p>;
   }
   return (
     <div className="author">
       <Container>
         <div className="row">
-          {data.photos ? (
-            <img
-              src={`https://covers.openlibrary.org/a/id/${data.photos[0]}-L.jpg`}
-              alt=""
-            />
-          ) : (
-            <img src={blankprofile.src} alt="" />
-          )}
           <div>
-            <h1>{data.name}</h1>
-            <p>{data.personal_name}</p>
-            <p>{data.bio}</p>
+            {author.photos ? (
+              <img
+                src={`https://covers.openlibrary.org/a/id/${author.photos[0]}-L.jpg`}
+                alt=""
+              />
+            ) : (
+              <img src={blankprofile.src} alt="" />
+            )}
+            <Button
+              handleOnClick={() => dispatch(addAuthor(author))}
+              title={"Add to favourite"}
+            ></Button>
+          </div>
+          <div>
+            <h1>{author.name}</h1>
+            <p>{author.personal_name}</p>
+            <p>{author.bio}</p>
           </div>
         </div>
       </Container>

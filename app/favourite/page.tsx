@@ -10,7 +10,10 @@ import Card from "@/app/components/card/Card";
 import Container from "@/app/components/container/Container";
 import Button from "@/app/components/button/Button";
 import { AppDispatch } from "@/app/lib/features/store";
-import { selectAuthors } from "../lib/features/authors/authorSlice";
+import {
+  removeAuthor,
+  selectAuthors,
+} from "../lib/features/authors/authorSlice";
 
 export default function Page() {
   const books = useSelector(selectBooks);
@@ -33,8 +36,14 @@ export default function Page() {
       </List>
       <h1>Fav Authors</h1>
       <List direction="column">
-        {authors.map((b) => (
-          <div style={{ display: "flex", flexDirection: "column" }}></div>
+        {authors.map((a) => (
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <Card key={a.key} title={a.name} img={a.photos[0]}></Card>
+            <Button
+              handleOnClick={() => dispatch(removeAuthor(a.key))}
+              title="Remove"
+            ></Button>
+          </div>
         ))}
       </List>
     </Container>
