@@ -12,6 +12,7 @@ import {
   addToReadList,
 } from "@/app/lib/features/books/bookSlice";
 import { Book, ReadBook } from "@/app/lib/utils/types";
+import defalaultImg from "./No-Image-Placeholder.svg.png";
 
 export default function Page() {
   const params = useParams<{ id: string }>();
@@ -45,7 +46,7 @@ export default function Page() {
                 alt="cover"
               />
             ) : (
-              <img></img>
+              <img src={defalaultImg.src}></img>
             )}
             <div className="buttons">
               {" "}
