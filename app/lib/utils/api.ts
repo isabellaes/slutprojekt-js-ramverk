@@ -7,7 +7,13 @@ import {
   BookDoc,
   AuthorDoc,
   Author,
+  Entry,
 } from "@/app/lib/utils/types";
+import {
+  calculateAverage,
+  calculateTotal,
+  extractPageNumbersFromArray,
+} from "./functions";
 
 export async function fetchBooksBySubject(query: string): Promise<Subject> {
   const apiUrl = `https://openlibrary.org/subjects/${encodeURIComponent(
@@ -55,6 +61,7 @@ export async function fetchBookByTitle(query: string): Promise<BookDoc[]> {
       throw new Error("Network response was not ok.");
     }
     const data: SearchResultBook = await response.json();
+    console.log(data);
 
     return data.docs.slice(0, 10);
   } catch (error) {
@@ -63,7 +70,9 @@ export async function fetchBookByTitle(query: string): Promise<BookDoc[]> {
   }
 }
 
-export async function fetchNumberOfPages(query: string): Promise<number> {
+export async function fetchAverageNumberOfPages(
+  query: string
+): Promise<number> {
   const apiUrl = `https://openlibrary.org/works/${encodeURIComponent(
     query
   )}/editions.json`;
@@ -73,7 +82,11 @@ export async function fetchNumberOfPages(query: string): Promise<number> {
       throw new Error("Network response was not ok.");
     }
     const data: RootEntry = await response.json();
-    return data.entries[0].number_of_pages;
+    const number_of_pages = extractPageNumbersFromArray(data.entries);
+    const total = calculateTotal(number_of_pages);
+    const average = calculateAverage(total, number_of_pages.length);
+
+    return average || 0;
   } catch (error) {
     console.error("Error fetching data:", error);
     throw error;
@@ -90,6 +103,7 @@ export async function fetchAuthorById(query: string): Promise<Author> {
       throw new Error("Network response was not ok.");
     }
     const data: Author = await response.json();
+    console.log(data);
     return data;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -105,6 +119,7 @@ export async function fetchAuthorByName(query: string): Promise<AuthorDoc[]> {
       throw new Error("Network response was not ok.");
     }
     const data: SearchResultAuthor = await response.json();
+    console.log(data);
     return data.docs;
   } catch (error) {
     console.error("Error fetching data:", error);
