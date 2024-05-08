@@ -18,7 +18,7 @@ export default function Page() {
   const params = useParams<{ id: string }>();
   const dispatch = useDispatch<AppDispatch>();
 
-  const { book } = useFetchWork(params.id);
+  const { book, pages } = useFetchWork(params.id);
 
   function handleAddToReadList(book: Book) {
     const bookToAdd: ReadBook = {
@@ -27,7 +27,7 @@ export default function Page() {
       comment: "",
       title: book.title,
       covers: book.covers,
-      numberOfPages: 278,
+      number_of_pages: pages || 199,
     };
 
     dispatch(addToReadList(bookToAdd));
@@ -86,6 +86,7 @@ export default function Page() {
               <span className="bold">First sentence:</span>
               {book.first_sentence?.value}
             </p>
+            <p>Pages: {pages != 0 ? `${pages}` : "199"}</p>
 
             <p>
               <span className="bold">Subjects:</span> {book.subjects}
