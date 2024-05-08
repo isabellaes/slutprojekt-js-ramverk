@@ -33,7 +33,7 @@ export default function Page() {
       <Container>
         <div className="row">
           <div>
-            {author.photos ? (
+            {author.photos[0] ? (
               <img
                 src={`https://covers.openlibrary.org/a/id/${author.photos[0]}-L.jpg`}
                 alt=""
@@ -49,7 +49,11 @@ export default function Page() {
           <div>
             <h1>{author.name}</h1>
             <p>{author.personal_name}</p>
-            <p>{author.bio}</p>
+            {typeof author.bio === "string" ? (
+              <p>{author.bio}</p>
+            ) : (
+              <p>{author.bio.value}</p>
+            )}
           </div>
         </div>
       </Container>
