@@ -10,35 +10,30 @@ import Modal from "../components/Modal/Modal";
 import Form from "../components/form/Form";
 import { useToggleModal } from "../lib/hooks/useToggleModal";
 import "./statistics.scss";
+import {
+  calculateAverage,
+  calculateTotal,
+  extractPageNumbersFromArray,
+  filterBooksWithReviews,
+} from "../lib/utils/functions";
 
 export default function Page() {
   const books = useSelector(selectBooks);
   const { open, toggle } = useToggleModal(false);
 
-  function calculateTotalNumberOfPages(): number {
-    return books.readList.reduce((total, book) => {
-      return total + book.numberOfPages;
-    }, 0);
-  }
-
-  function calculateTotalNumberOfReviews(): number {
-    return books.readList.reduce((total, book) => {
-      if (book.comment && book.rating) {
-        return total + 1;
-      } else {
-        return total;
-      }
-    }, 0);
-  }
+  const booksWithReviews = filterBooksWithReviews(books.readList);
+  const numbers = extractPageNumbersFromArray(books.readList);
 
   function calculateAverageRating(): number {
-    return books.readList.reduce((total, book) => {
+    const total = books.readList.reduce((total, book) => {
       if (book.comment && book.rating) {
         return total + Number(book.rating);
       } else {
         return total;
       }
     }, 0);
+
+    return calculateAverage(total, booksWithReviews.length);
   }
 
   return (
@@ -47,23 +42,21 @@ export default function Page() {
         <h1>Statistics</h1>
 
         <p>Number of books read: {books.readList.length}</p>
-        <p>Total pages: {calculateTotalNumberOfPages()} </p>
-        <p>Number of bookreviews: {calculateTotalNumberOfReviews()}</p>
+        <p>Total pages: {calculateTotal(numbers)} </p>
+        <p>Number of bookreviews: {booksWithReviews.length}</p>
         <p>
           Average number of pages:{" "}
-          {calculateTotalNumberOfPages() / books.readList.length || 0}
+          {calculateAverage(calculateTotal(numbers), books.readList.length) ||
+            0}
         </p>
-        <p>
-          Average rating:{" "}
-          {calculateAverageRating() / calculateTotalNumberOfReviews() || 0}
-        </p>
+        <p>Average rating: {calculateAverageRating() || 0}</p>
 
         <h1>Finished books</h1>
         <List direction="row">
           {books.readList.map((b) => (
             <div className="list-item">
               <Card key={b.key} title={b.title} img={b.covers[0]} />
-              {/*  <p>{b.numberOfPages}</p> */}
+              <p>{b.number_of_pages}</p>
               {b.comment && b.rating ? (
                 <div className="review">
                   <h2>Review</h2>
