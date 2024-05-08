@@ -61,7 +61,7 @@ export type Review = {
 export type Author = {
   name: string;
   title: string;
-  bio: string;
+  bio: string | { key: string; value: string };
   alternate_names: string[];
   photos: number[];
   personal_name: string;
@@ -96,5 +96,5 @@ export type ReadBook = {
   comment: string;
   title: string;
   covers: number[];
-  numberOfPages: number;
+  number_of_pages: number;
 };
