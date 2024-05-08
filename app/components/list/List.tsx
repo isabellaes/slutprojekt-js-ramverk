@@ -3,13 +3,17 @@ import Card from "../card/Card";
 import "./list.scss";
 
 type ListPropsType = {
-  direction: "row" | "column";
   children: ReactNode;
+  space: "evenly" | "between";
 };
 
-const List = ({ direction, children }: ListPropsType) => {
+const List = ({ children, space }: ListPropsType) => {
   return (
-    <div className={direction === "row" ? "list row" : "list column"}>
+    <div
+      className={
+        space === "between" ? "list row space-between" : "list row space-evenly"
+      }
+    >
       {children}
     </div>
   );

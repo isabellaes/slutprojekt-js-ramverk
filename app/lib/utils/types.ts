@@ -38,6 +38,7 @@ export type FavBook = {
   key: string;
   subjects: string[];
   title: string;
+  number_of_pages: number;
 };
 
 export type Author1 = {

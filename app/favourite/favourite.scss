@@ -1,0 +1,9 @@
+.row {
+  display: flex;
+  flex-direction: row;
+
+  img {
+    max-height: 100px;
+    margin-right: 1em;
+  }
+}

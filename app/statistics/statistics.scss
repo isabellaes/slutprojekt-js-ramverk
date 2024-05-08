@@ -1,12 +1,4 @@
 .statistics {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-
-  img {
-    max-height: 150px;
-  }
-
   .bold {
     font-weight: bolder;
   }
@@ -15,10 +7,22 @@
     display: flex;
     flex-direction: row;
   }
-
+  h1 {
+    padding-top: 0.5em;
+  }
   .review {
     display: flex;
     flex-direction: column;
     padding-left: 1em;
+  }
+
+  .row {
+    display: flex;
+    flex-direction: row;
+
+    img {
+      max-height: 100px;
+      margin-right: 1em;
+    }
   }
 }

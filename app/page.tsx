@@ -23,7 +23,7 @@ const Home = async () => {
       {data.map((x) => (
         <div key={x.key}>
           <h3>{x.name.toLocaleUpperCase()}</h3>
-          <List key={x.key} direction="row">
+          <List key={x.key} space="evenly">
             {x.works.map((w) => (
               <Link key={w.key} href={w.key}>
                 <Card

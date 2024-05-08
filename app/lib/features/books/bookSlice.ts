@@ -52,6 +52,10 @@ export const bookSlice = createSlice({
         state.readList.push(action.payload);
       }
     },
+
+    removeBookFromReadList: (state, action: PayloadAction<string>) => {
+      state.readList = state.readList.filter((b) => b.key != action.payload);
+    },
   },
 });
 
@@ -60,6 +64,7 @@ export const {
   removeBookFromFavourite,
   addReview,
   addToReadList,
+  removeBookFromReadList,
 } = bookSlice.actions;
 
 export const selectBooks = (state: RootState) => state.book;

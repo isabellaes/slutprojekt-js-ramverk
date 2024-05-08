@@ -3,8 +3,8 @@
   padding: 1em;
   background-color: #cacfd661;
   gap: 1em;
-  justify-content: center;
   align-items: center;
+  margin: 1em;
 
   &.row {
     flex-direction: row;
@@ -13,5 +13,13 @@
 
   &.column {
     flex-direction: column;
+  }
+
+  &.space-evenly {
+    justify-content: space-evenly;
+  }
+
+  &.space-between {
+    justify-content: space-between;
   }
 }

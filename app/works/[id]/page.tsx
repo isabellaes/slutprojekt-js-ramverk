@@ -56,6 +56,7 @@ export default function Page() {
       key: book.key,
       subjects: book.subjects,
       title: book.title,
+      number_of_pages: pages,
     };
 
     dispatch(addToFavouriteBook(favBook));

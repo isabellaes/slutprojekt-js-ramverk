@@ -1,6 +1,6 @@
 "use client";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectBooks } from "@/app/lib/features/books/bookSlice";
 import Container from "../components/container/Container";
 import List from "../components/list/List";
@@ -16,6 +16,8 @@ import {
   extractPageNumbersFromArray,
   filterBooksWithReviews,
 } from "../lib/utils/functions";
+import { AppDispatch } from "@/app/lib/features/store";
+import { removeBookFromReadList } from "../lib/features/books/bookSlice";
 
 export default function Page() {
   const books = useSelector(selectBooks);
@@ -23,6 +25,7 @@ export default function Page() {
 
   const booksWithReviews = filterBooksWithReviews(books.readList);
   const numbers = extractPageNumbersFromArray(books.readList);
+  const dispatch = useDispatch<AppDispatch>();
 
   function calculateAverageRating(): number {
     const total = books.readList.reduce((total, book) => {
@@ -52,11 +55,16 @@ export default function Page() {
         <p>Average rating: {calculateAverageRating() || 0}</p>
 
         <h1>Finished books</h1>
-        <List direction="row">
-          {books.readList.map((b) => (
-            <div className="list-item">
-              <Card key={b.key} title={b.title} img={b.cover} />
-              <p>{b.number_of_pages}</p>
+
+        {books.readList.map((b) => (
+          <List space="between">
+            <div className="row">
+              <img src={b.cover} alt="" />
+              <div>
+                <h2>{b.title}</h2>
+                <p>{b.number_of_pages}</p>
+              </div>
+
               {b.comment && b.rating ? (
                 <div className="review">
                   <h2>Review</h2>
@@ -66,17 +74,21 @@ export default function Page() {
               ) : (
                 <Button handleOnClick={() => toggle()} title="Add review" />
               )}
-
-              {open ? (
-                <Modal>
-                  <Form id={b.key} handleClose={() => toggle()}></Form>
-                </Modal>
-              ) : (
-                <></>
-              )}
             </div>
-          ))}
-        </List>
+            <Button
+              title="Remove"
+              handleOnClick={() => dispatch(removeBookFromReadList(b.key))}
+            ></Button>
+
+            {open ? (
+              <Modal>
+                <Form id={b.key} handleClose={() => toggle()}></Form>
+              </Modal>
+            ) : (
+              <></>
+            )}
+          </List>
+        ))}
       </Container>
     </div>
   );
