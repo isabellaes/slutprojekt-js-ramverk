@@ -11,8 +11,8 @@ import {
   addToFavouriteBook,
   addToReadList,
 } from "@/app/lib/features/books/bookSlice";
-import { Book, ReadBook } from "@/app/lib/utils/types";
-import defalaultImg from "./No-Image-Placeholder.svg.png";
+import { Book, ReadBook, FavBook } from "@/app/lib/utils/types";
+import defalaultImg from "../../images/No-Image-Placeholder.svg.png";
 
 export default function Page() {
   const params = useParams<{ id: string }>();
@@ -21,16 +21,44 @@ export default function Page() {
   const { book, pages } = useFetchWork(params.id);
 
   function handleAddToReadList(book: Book) {
+    let photosrc;
+    if (book.covers != undefined) {
+      photosrc = `https://covers.openlibrary.org/b/id/${book.covers[0]}-M.jpg`;
+    } else {
+      photosrc = defalaultImg.src;
+    }
     const bookToAdd: ReadBook = {
       key: book.key,
       rating: "",
       comment: "",
       title: book.title,
-      covers: book.covers,
+      cover: photosrc,
       number_of_pages: pages || 199,
     };
 
     dispatch(addToReadList(bookToAdd));
+  }
+
+  function handleAddToFavourite(book: Book) {
+    let photosrc;
+    if (book.covers != undefined) {
+      photosrc = `https://covers.openlibrary.org/b/id/${book.covers[0]}-M.jpg`;
+    } else {
+      photosrc = defalaultImg.src;
+    }
+
+    const favBook: FavBook = {
+      authors: book.authors,
+      cover: photosrc,
+      description: book.description,
+      first_publish_date: book.first_publish_date,
+      first_sentence: book.first_sentence,
+      key: book.key,
+      subjects: book.subjects,
+      title: book.title,
+    };
+
+    dispatch(addToFavouriteBook(favBook));
   }
 
   if (!book) return <div>Loading...</div>;
@@ -51,7 +79,7 @@ export default function Page() {
             <div className="buttons">
               {" "}
               <Button
-                handleOnClick={() => dispatch(addToFavouriteBook(book))}
+                handleOnClick={() => handleAddToFavourite(book)}
                 title="Add to favourite"
               />
               <Button

@@ -26,6 +26,20 @@ export type Book = {
   title: string;
 };
 
+export type FavBook = {
+  authors: Author1[];
+  cover: string;
+  description: string | { type: string; value: string };
+  first_publish_date: string;
+  first_sentence: {
+    type: string;
+    value: string;
+  };
+  key: string;
+  subjects: string[];
+  title: string;
+};
+
 export type Author1 = {
   author: { key: string };
   type: { key: string };
@@ -71,6 +85,17 @@ export type Author = {
   fuller_name: string;
 };
 
+export type FavAuthor = {
+  name: string;
+  title: string;
+  bio: string | { key: string; value: string };
+  photo: string;
+  personal_name: string;
+  birth_date: string;
+  key: string;
+  fuller_name: string;
+};
+
 export type SearchResultAuthor = {
   numFound: number;
   start: number;
@@ -95,6 +120,6 @@ export type ReadBook = {
   rating: string;
   comment: string;
   title: string;
-  covers: number[];
+  cover: string;
   number_of_pages: number;
 };

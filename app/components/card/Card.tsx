@@ -1,18 +1,16 @@
 import "./card.scss";
-import { Root, Work } from "../../lib/utils/types";
+import defaultImg from "../../images/No-Image-Placeholder.svg.png";
 
 type CardPropsType = {
   title: string;
-  img: number;
+  img: string;
 };
 
 const Card = ({ title, img }: CardPropsType) => {
   return (
     <div>
-      <img
-        src={`https://covers.openlibrary.org/b/id/${img}-M.jpg`}
-        alt="cover"
-      />
+      <img src={img} alt="cover" />
+
       <p>{title}</p>
     </div>
   );

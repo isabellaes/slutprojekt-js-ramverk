@@ -26,7 +26,11 @@ const Home = async () => {
           <List key={x.key} direction="row">
             {x.works.map((w) => (
               <Link key={w.key} href={w.key}>
-                <Card key={w.key} title={w.title} img={w.cover_id}></Card>
+                <Card
+                  key={w.key}
+                  title={w.title}
+                  img={`https://covers.openlibrary.org/b/id/${w.cover_id}-M.jpg`}
+                ></Card>
               </Link>
             ))}
           </List>

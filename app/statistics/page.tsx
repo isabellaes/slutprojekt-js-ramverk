@@ -55,7 +55,7 @@ export default function Page() {
         <List direction="row">
           {books.readList.map((b) => (
             <div className="list-item">
-              <Card key={b.key} title={b.title} img={b.covers[0]} />
+              <Card key={b.key} title={b.title} img={b.cover} />
               <p>{b.number_of_pages}</p>
               {b.comment && b.rating ? (
                 <div className="review">

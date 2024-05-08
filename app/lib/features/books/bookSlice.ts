@@ -2,17 +2,15 @@
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
-import { Review, Book, ReadBook } from "../../utils/types";
+import { Review, Book, ReadBook, FavBook } from "../../utils/types";
 
 type BookStateType = {
-  favouriteBooks: Book[];
-  reviews: Review[];
+  favouriteBooks: FavBook[];
   readList: ReadBook[];
 };
 
 const initialState: BookStateType = {
   favouriteBooks: [],
-  reviews: [],
   readList: [],
 };
 
@@ -21,7 +19,7 @@ export const bookSlice = createSlice({
 
   initialState,
   reducers: {
-    addToFavouriteBook: (state, action: PayloadAction<Book>) => {
+    addToFavouriteBook: (state, action: PayloadAction<FavBook>) => {
       const exists = state.favouriteBooks.find(
         (b) => b.key === action.payload.key
       );

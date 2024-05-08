@@ -26,7 +26,7 @@ export default function Page() {
       <List direction="column">
         {books.favouriteBooks.map((b) => (
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <Card key={b.key} title={b.title} img={b.covers[0]}></Card>
+            <Card key={b.key} title={b.title} img={b.cover}></Card>
             <Button
               handleOnClick={() => dispatch(removeBookFromFavourite(b.key))}
               title="Remove"
@@ -38,7 +38,7 @@ export default function Page() {
       <List direction="column">
         {authors.map((a) => (
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <Card key={a.key} title={a.name} img={a.photos[0]}></Card>
+            <Card key={a.key} title={a.name} img={a.photo}></Card>
             <Button
               handleOnClick={() => dispatch(removeAuthor(a.key))}
               title="Remove"
