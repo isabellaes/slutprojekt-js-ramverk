@@ -18,8 +18,10 @@ import {
 } from "../lib/utils/functions";
 import { AppDispatch } from "@/app/lib/features/store";
 import { removeBookFromReadList } from "../lib/features/books/bookSlice";
+import { useState } from "react";
 
 export default function Page() {
+  const [selected, setSelected] = useState<string>("");
   const books = useSelector(selectBooks);
   const { open, toggle } = useToggleModal(false);
 
@@ -72,23 +74,29 @@ export default function Page() {
                   <p>Rating: {b.rating}/10</p>
                 </div>
               ) : (
-                <Button handleOnClick={() => toggle()} title="Add review" />
+                <Button
+                  handleOnClick={() => {
+                    setSelected(b.key);
+                    toggle();
+                  }}
+                  title="Add review"
+                />
               )}
             </div>
             <Button
               title="Remove"
               handleOnClick={() => dispatch(removeBookFromReadList(b.key))}
             ></Button>
-
-            {open ? (
-              <Modal>
-                <Form id={b.key} handleClose={() => toggle()}></Form>
-              </Modal>
-            ) : (
-              <></>
-            )}
           </List>
         ))}
+
+        {open && selected ? (
+          <Modal>
+            <Form id={selected} handleClose={() => toggle()}></Form>
+          </Modal>
+        ) : (
+          <></>
+        )}
       </Container>
     </div>
   );
