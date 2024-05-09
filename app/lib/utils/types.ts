@@ -13,7 +13,6 @@ type Work = {
 };
 
 export type Book = {
-  authors: Author1[];
   covers: number[];
   description: string | { type: string; value: string };
   first_publish_date: string;
@@ -24,26 +23,9 @@ export type Book = {
   key: string;
   subjects: string[];
   title: string;
-};
-
-export type FavBook = {
-  authors: Author1[];
-  cover: string;
-  description: string | { type: string; value: string };
-  first_publish_date: string;
-  first_sentence: {
-    type: string;
-    value: string;
-  };
-  key: string;
-  subjects: string[];
-  title: string;
-  number_of_pages: number;
-};
-
-export type Author1 = {
-  author: { key: string };
-  type: { key: string };
+  number_of_pages?: number;
+  revies?: Review;
+  img_url?: string;
 };
 
 export interface RootEntry {
@@ -54,17 +36,14 @@ export interface Entry {
   number_of_pages: number;
 }
 
-export type SearchResultBook = {
-  docs: BookDoc[];
+export type SearchResult = {
+  docs: Doc[];
+  numFound: number;
 };
-
-export type BookDoc = {
-  author_name: string[];
-  cover_i: number;
-  edition_count: number;
-  first_publish_year: number;
+export type Doc = {
   key: string;
-  title: string;
+  title?: string;
+  name?: string;
 };
 
 export type Review = {
@@ -84,43 +63,5 @@ export type Author = {
   source_records: string[];
   key: string;
   fuller_name: string;
-};
-
-export type FavAuthor = {
-  name: string;
-  title: string;
-  bio: string | { key: string; value: string };
-  photo: string;
-  personal_name: string;
-  birth_date: string;
-  key: string;
-  fuller_name: string;
-};
-
-export type SearchResultAuthor = {
-  numFound: number;
-  start: number;
-  numFoundExact: boolean;
-  docs: AuthorDoc[];
-};
-
-export type AuthorDoc = {
-  alternate_names?: string[];
-  birth_date?: string;
-  key: string;
-  name: string;
-  top_subjects: string[];
-  top_work: string;
-  type: string;
-  work_count: number;
-  _version_: number;
-};
-
-export type ReadBook = {
-  key: string;
-  rating: string;
-  comment: string;
-  title: string;
-  cover: string;
-  number_of_pages: number;
+  img_url?: string;
 };
