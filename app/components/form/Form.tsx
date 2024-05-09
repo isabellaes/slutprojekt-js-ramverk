@@ -31,7 +31,6 @@ const Form = ({ id, handleClose }: FormPropsType) => {
       </div>
 
       <h2>Add review</h2>
-      <p>{id}</p>
 
       <form
         onSubmit={(e) => {
