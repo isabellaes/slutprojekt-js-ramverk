@@ -27,7 +27,7 @@ export default function Page() {
       {books.favouriteBooks.map((b) => (
         <List space="between">
           <div className="row">
-            <img src={b.cover} alt="cover" />
+            <img src={b.img_url} alt="cover" />
             <div>
               <h3>{b.title}</h3>
               <p>{b.first_publish_date}</p>
@@ -46,7 +46,7 @@ export default function Page() {
       {authors.map((a) => (
         <List space="between">
           <div className="row">
-            <img src={a.photo} alt="cover" />
+            <img src={a.img_url} alt="cover" />
             <div>
               <h2>{a.name}</h2>
               <p>{a.fuller_name}</p>

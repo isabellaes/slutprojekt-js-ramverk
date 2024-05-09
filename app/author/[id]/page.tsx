@@ -6,7 +6,7 @@ import { AppDispatch } from "@/app/lib/features/store";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { fetchAuthorById } from "@/app/lib/utils/api";
-import { Author, FavAuthor } from "@/app/lib/utils/types";
+import { Author } from "@/app/lib/utils/types";
 import Button from "@/app/components/button/Button";
 import blankprofile from "../../images/blank-profile-picture-973460_640.png";
 import "./authorpage.scss";
@@ -32,15 +32,9 @@ export default function Page() {
     } else {
       photosrc = blankprofile.src;
     }
-    const authorToAdd: FavAuthor = {
-      name: author.name,
-      title: author.title,
-      bio: author.bio,
-      photo: photosrc,
-      personal_name: author.personal_name,
-      birth_date: author.birth_date,
-      key: author.key,
-      fuller_name: author.fuller_name,
+    const authorToAdd: Author = {
+      ...author,
+      img_url: photosrc,
     };
     dispatch(addAuthor(authorToAdd));
   }

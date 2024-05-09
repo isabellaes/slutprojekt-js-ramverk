@@ -2,10 +2,10 @@
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-import { FavAuthor } from "../../utils/types";
+import { Author } from "../../utils/types";
 
 type AuthorStateType = {
-  authors: FavAuthor[];
+  authors: Author[];
 };
 
 const initialState: AuthorStateType = {
@@ -17,7 +17,7 @@ export const authorSlice = createSlice({
 
   initialState,
   reducers: {
-    addAuthor: (state, action: PayloadAction<FavAuthor>) => {
+    addAuthor: (state, action: PayloadAction<Author>) => {
       state.authors.push(action.payload);
     },
     removeAuthor: (state, action: PayloadAction<string>) => {

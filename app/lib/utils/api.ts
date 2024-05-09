@@ -2,12 +2,8 @@ import {
   Book,
   Subject,
   RootEntry,
-  SearchResultBook,
-  SearchResultAuthor,
-  BookDoc,
-  AuthorDoc,
+  SearchResult,
   Author,
-  Entry,
 } from "@/app/lib/utils/types";
 import {
   calculateAverage,
@@ -50,7 +46,7 @@ export async function fetchWorkById(query: string): Promise<Book> {
   }
 }
 
-export async function fetchBookByTitle(query: string): Promise<BookDoc[]> {
+export async function fetchBookByTitle(query: string): Promise<SearchResult> {
   const apiUrl = `https://openlibrary.org/search.json?title=${encodeURIComponent(
     query
   )}`;
@@ -60,16 +56,15 @@ export async function fetchBookByTitle(query: string): Promise<BookDoc[]> {
     if (!response.ok) {
       throw new Error("Network response was not ok.");
     }
-    const data: SearchResultBook = await response.json();
-    console.log(data);
-
-    return data.docs.slice(0, 10);
+    const data: SearchResult = await response.json();
+    return data;
   } catch (error) {
     console.error("Error fetching data:", error);
     throw error;
   }
 }
 
+//change this function to only fetch editions from work
 export async function fetchAverageNumberOfPages(
   query: string
 ): Promise<number> {
@@ -111,16 +106,16 @@ export async function fetchAuthorById(query: string): Promise<Author> {
   }
 }
 
-export async function fetchAuthorByName(query: string): Promise<AuthorDoc[]> {
+export async function fetchAuthorByName(query: string): Promise<SearchResult> {
   const apiUrl = `https://openlibrary.org/search/authors.json?q=${query}`;
   try {
     const response = await fetch(apiUrl);
     if (!response.ok) {
       throw new Error("Network response was not ok.");
     }
-    const data: SearchResultAuthor = await response.json();
-    console.log(data);
-    return data.docs;
+    const data: SearchResult = await response.json();
+
+    return data;
   } catch (error) {
     console.error("Error fetching data:", error);
     throw error;
