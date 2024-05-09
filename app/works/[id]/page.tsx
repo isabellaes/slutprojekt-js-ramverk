@@ -5,18 +5,23 @@ import "../workpage.scss";
 import Button from "@/app/components/button/Button";
 import { useParams } from "next/navigation";
 import useFetchWork from "@/app/lib/hooks/useFetchWork";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/app/lib/features/store";
 import {
   addToFavouriteBook,
   addToReadList,
+  selectBooks,
+  removeBookFromFavourite,
 } from "@/app/lib/features/books/bookSlice";
-import { Book, ReadBook, FavBook } from "@/app/lib/utils/types";
+import { Book } from "@/app/lib/utils/types";
 import defalaultImg from "../../images/No-Image-Placeholder.svg.png";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 
 export default function Page() {
   const params = useParams<{ id: string }>();
   const dispatch = useDispatch<AppDispatch>();
+  const books = useSelector(selectBooks);
 
   const { book, pages } = useFetchWork(params.id);
 
@@ -27,16 +32,25 @@ export default function Page() {
     } else {
       photosrc = defalaultImg.src;
     }
-    const bookToAdd: ReadBook = {
-      key: book.key,
-      rating: "",
-      comment: "",
-      title: book.title,
-      cover: photosrc,
+    const bookToAdd: Book = {
+      ...book,
+      img_url: photosrc,
       number_of_pages: pages || 199,
     };
 
     dispatch(addToReadList(bookToAdd));
+  }
+
+  function checkIfFavourite(key: string): boolean {
+    const exists = books.favouriteBooks.find((b) => b.key === key);
+    if (exists) {
+      return true;
+    }
+    return false;
+  }
+
+  function handleRemoveFavourite(key: string) {
+    dispatch(removeBookFromFavourite(key));
   }
 
   function handleAddToFavourite(book: Book) {
@@ -47,15 +61,9 @@ export default function Page() {
       photosrc = defalaultImg.src;
     }
 
-    const favBook: FavBook = {
-      authors: book.authors,
-      cover: photosrc,
-      description: book.description,
-      first_publish_date: book.first_publish_date,
-      first_sentence: book.first_sentence,
-      key: book.key,
-      subjects: book.subjects,
-      title: book.title,
+    const favBook: Book = {
+      ...book,
+      img_url: photosrc,
       number_of_pages: pages,
     };
 
@@ -78,11 +86,17 @@ export default function Page() {
               <img src={defalaultImg.src}></img>
             )}
             <div className="buttons">
-              {" "}
-              <Button
-                handleOnClick={() => handleAddToFavourite(book)}
-                title="Add to favourite"
-              />
+              {checkIfFavourite(book.key) ? (
+                <FavoriteIcon
+                  color="error"
+                  onClick={() => handleRemoveFavourite(book.key)}
+                />
+              ) : (
+                <FavoriteBorderOutlinedIcon
+                  onClick={() => handleAddToFavourite(book)}
+                />
+              )}
+
               <Button
                 handleOnClick={() => handleAddToReadList(book)}
                 title="Mark as finished"
@@ -112,10 +126,13 @@ export default function Page() {
               {book.first_publish_date}
             </p>
             <p>
-              <span className="bold">First sentence:</span>
+              <span className="bold">First sentence: </span>
               {book.first_sentence?.value}
             </p>
-            <p>Pages: {pages != 0 ? `${pages}` : "199"}</p>
+            <p>
+              <span className="bold"> Pages: </span>{" "}
+              {pages != 0 ? `${pages}` : "199"}
+            </p>
 
             <p>
               <span className="bold">Subjects:</span> {book.subjects}
