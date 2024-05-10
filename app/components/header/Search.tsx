@@ -1,20 +1,28 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 const Search = () => {
   const [searchValue, setSearchValue] = useState<string>("title");
   const [serchTerm, setSearchTerm] = useState<string>("");
-  const router = useRouter();
+  const searchParams = useSearchParams();
+  const { replace } = useRouter();
 
   function handleSearch() {
     if (serchTerm) {
+      const params = new URLSearchParams(searchParams);
+      params.set("query", serchTerm);
+
       if (searchValue === "title") {
-        router.push(`/search/book/${serchTerm}`);
+        params.set("page", "1");
+        params.set("subject", "title");
+        replace(`/search/book?${params.toString()}`);
       }
       if (searchValue === "author") {
-        router.push(`/search/author/${serchTerm}`);
+        params.set("page", "0");
+        params.set("subject", "author");
+        replace(`/search/author?${params.toString()}`);
       }
     }
   }
