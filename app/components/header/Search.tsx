@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 const Search = () => {
   const [searchValue, setSearchValue] = useState<string>("title");
