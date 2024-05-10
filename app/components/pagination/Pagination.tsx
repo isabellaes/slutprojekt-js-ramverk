@@ -34,7 +34,7 @@ const PaginationBox = ({
   }
   return (
     <Pagination
-      count={Math.ceil(total / 100)}
+      count={Math.ceil(total / 100) - 1}
       page={page}
       onChange={handlePageChange}
     />
