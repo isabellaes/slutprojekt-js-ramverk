@@ -46,10 +46,13 @@ export async function fetchWorkById(query: string): Promise<Book> {
   }
 }
 
-export async function fetchBookByTitle(query: string): Promise<SearchResult> {
+export async function fetchBookByTitle(
+  query: string,
+  page: string
+): Promise<SearchResult> {
   const apiUrl = `https://openlibrary.org/search.json?title=${encodeURIComponent(
     query
-  )}`;
+  )}&page=${page}`;
 
   try {
     const response = await fetch(apiUrl);
@@ -106,8 +109,11 @@ export async function fetchAuthorById(query: string): Promise<Author> {
   }
 }
 
-export async function fetchAuthorByName(query: string): Promise<SearchResult> {
-  const apiUrl = `https://openlibrary.org/search/authors.json?q=${query}`;
+export async function fetchAuthorByName(
+  query: string,
+  page: string
+): Promise<SearchResult> {
+  const apiUrl = `https://openlibrary.org/search/authors.json?q=${query}&offset=${page}`;
   try {
     const response = await fetch(apiUrl);
     if (!response.ok) {
