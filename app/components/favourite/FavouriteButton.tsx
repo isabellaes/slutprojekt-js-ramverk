@@ -14,7 +14,10 @@ const FavouriteButton = ({
   return (
     <>
       {checkIfFavourite() ? (
-        <FavoriteIcon color="error" onClick={() => handleRemoveFavourite()} />
+        <FavoriteIcon
+          sx={{ color: "#D90368" }}
+          onClick={() => handleRemoveFavourite()}
+        />
       ) : (
         <FavoriteBorderOutlinedIcon onClick={() => handleAddToFavourite()} />
       )}
