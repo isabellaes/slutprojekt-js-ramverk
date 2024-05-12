@@ -15,8 +15,7 @@ import {
 } from "@/app/lib/features/books/bookSlice";
 import { Book } from "@/app/lib/utils/types";
 import defalaultImg from "../../images/No-Image-Placeholder.svg.png";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import FavouriteButton from "@/app/components/favourite/FavouriteButton";
 
 export default function Page() {
   const params = useParams<{ id: string }>();
@@ -86,16 +85,11 @@ export default function Page() {
               <img src={defalaultImg.src}></img>
             )}
             <div className="buttons">
-              {checkIfFavourite(book.key) ? (
-                <FavoriteIcon
-                  color="error"
-                  onClick={() => handleRemoveFavourite(book.key)}
-                />
-              ) : (
-                <FavoriteBorderOutlinedIcon
-                  onClick={() => handleAddToFavourite(book)}
-                />
-              )}
+              <FavouriteButton
+                checkIfFavourite={() => checkIfFavourite(book.key)}
+                handleAddToFavourite={() => handleAddToFavourite(book)}
+                handleRemoveFavourite={() => handleRemoveFavourite(book.key)}
+              />
 
               <Button
                 handleOnClick={() => handleAddToReadList(book)}
