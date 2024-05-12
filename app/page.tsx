@@ -4,7 +4,7 @@ import List from "@/app/components/list/List";
 import Card from "@/app/components/card/Card";
 import { Subject } from "@/app/lib/utils/types";
 import Link from "next/link";
-import "./style/startPage.scss";
+import styles from "./style/home.module.scss";
 
 const Home = async () => {
   const data_subject_romance: Subject = await fetchBooksBySubject("romance");
@@ -19,10 +19,10 @@ const Home = async () => {
 
   return (
     <Container>
-      <h1>Explore library</h1>
+      <h1 className={styles.title}>Explore library</h1>
       {data.map((x) => (
         <div key={x.key}>
-          <h3>{x.name.toLocaleUpperCase()}</h3>
+          <h3 className={styles.subtitle}>{x.name.toLocaleUpperCase()}</h3>
           <List key={x.key} space="evenly">
             {x.works.map((w) => (
               <Link key={w.key} href={w.key}>
