@@ -1,0 +1,16 @@
+.btn {
+  background-color: #f97f04;
+  border-radius: 3px;
+  padding: 1em;
+  min-width: 8em;
+  max-width: 15em;
+  height: fit-content;
+  transition: background-color box-shadow 0.2s ease-in-out;
+  border: none;
+  color: white;
+}
+
+.btn:hover {
+  background-color: #fc8e20;
+  box-shadow: -2px -8px 62px 5px rgba(254, 145, 0, 0.61);
+}
