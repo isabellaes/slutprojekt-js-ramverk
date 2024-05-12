@@ -8,7 +8,7 @@ type CardPropsType = {
 
 const Card = ({ title, img }: CardPropsType) => {
   return (
-    <div>
+    <div className="card">
       <img src={img} alt="cover" />
 
       <p>{title}</p>
