@@ -8,7 +8,6 @@ import Button from "../components/button/Button";
 import Modal from "../components/Modal/Modal";
 import Form from "../components/form/Form";
 import { useToggleModal } from "../lib/hooks/useToggleModal";
-import "./statistics.scss";
 import {
   calculateAverage,
   calculateTotal,
@@ -19,6 +18,7 @@ import { AppDispatch } from "@/app/lib/features/store";
 import { removeBookFromReadList } from "../lib/features/books/bookSlice";
 import { useState } from "react";
 import Counter from "../components/counter/Counter";
+import style from "./statistics.module.scss";
 
 export default function Page() {
   const [selected, setSelected] = useState<string>("");
@@ -42,10 +42,10 @@ export default function Page() {
   }
 
   return (
-    <div className="statistics">
+    <div className={style.statistics}>
       <Container>
-        <h1>Statistics</h1>
-        <div className="row space-evenly">
+        <h1 className={style.title}>Statistics</h1>
+        <div className={style.counters}>
           <Counter number={books.readList.length} title="Read books"></Counter>
           <Counter number={calculateTotal(numbers)} title="Pages" />
 
@@ -65,24 +65,29 @@ export default function Page() {
           ></Counter>
         </div>
 
-        <h1>Finished books</h1>
+        <h1 className={style.title}>Read books</h1>
 
         {books.readList.map((b) => (
           <List space="between">
-            <div className="row">
+            <div className={style.column}>
               <img src={b.img_url} alt="" />
-              <div>
-                <h2>{b.title}</h2>
+              <div className={style.text}>
+                <h3>{b.title}</h3>
                 <p>{b.number_of_pages}</p>
               </div>
+            </div>
 
-              {b.revies?.rating ? (
-                <div className="review">
-                  <h2>Review</h2>
-                  <p>Comment: {b.revies.text}</p>
-                  <p>Rating: {b.revies.rating}/10</p>
-                </div>
-              ) : (
+            {b.revies?.rating ? (
+              <div className={style.review}>
+                <h3>Review</h3>
+                <p>Comment: {b.revies.text}</p>
+                <p>Rating: {b.revies.rating}/10</p>
+              </div>
+            ) : (
+              <></>
+            )}
+            <div className={style.buttons}>
+              {b.revies === undefined ? (
                 <Button
                   handleOnClick={() => {
                     setSelected(b.key);
@@ -90,12 +95,15 @@ export default function Page() {
                   }}
                   title="Add review"
                 />
+              ) : (
+                <></>
               )}
+
+              <Button
+                title="Remove"
+                handleOnClick={() => dispatch(removeBookFromReadList(b.key))}
+              ></Button>
             </div>
-            <Button
-              title="Remove"
-              handleOnClick={() => dispatch(removeBookFromReadList(b.key))}
-            ></Button>
           </List>
         ))}
 

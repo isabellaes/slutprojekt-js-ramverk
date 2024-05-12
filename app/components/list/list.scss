@@ -1,10 +1,11 @@
 .list {
   display: flex;
   padding: 1em;
-  background-color: #cacfd661;
   gap: 1em;
-  align-items: center;
   margin: 1em;
+  outline: 1px solid #ffd400;
+  border: 1px solid #ffd400;
+  border-radius: 5px;
 
   &.row {
     flex-direction: row;

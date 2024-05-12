@@ -7,7 +7,7 @@ header {
   justify-content: space-between;
   padding: 1em 2em 1em 2em;
   position: fixed;
-  background-color: #517664;
+  background-color: #2e294e;
 
   nav {
     display: flex;
@@ -19,5 +19,23 @@ header {
   .link {
     text-decoration: none;
     color: white;
+  }
+
+  #search-select {
+    border-radius: 5px 0 0 5px;
+    padding: 9px;
+    border: none;
+  }
+  #search {
+    padding: 10px;
+    border-radius: 0;
+    border: none;
+  }
+
+  #search-btn {
+    background-color: #ff7c09;
+    border-radius: 0 5px 5px 0;
+    padding: 10px;
+    border: none;
   }
 }

@@ -46,7 +46,9 @@ const Search = () => {
         id="search"
         onChange={(e) => setSearchTerm(e.currentTarget.value)}
       />
-      <button onClick={() => handleSearch()}>Search</button>
+      <button id="search-btn" onClick={() => handleSearch()}>
+        Search
+      </button>
     </div>
   );
 };
