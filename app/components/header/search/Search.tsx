@@ -2,6 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
+import style from "./search.module.scss";
 
 const Search = () => {
   const [searchValue, setSearchValue] = useState<string>("title");
@@ -27,7 +28,7 @@ const Search = () => {
     }
   }
   return (
-    <div>
+    <div className={style.search}>
       <select
         name="search"
         id="search-select"
