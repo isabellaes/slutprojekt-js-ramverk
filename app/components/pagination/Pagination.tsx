@@ -6,13 +6,13 @@ import { useRouter, useSearchParams } from "next/navigation";
 type PaginationBoxProps = {
   total: number;
   page: number;
-  seacrhTerm: string;
+  searchTerm: string;
   pathName: string;
 };
 const PaginationBox = ({
   total,
   page,
-  seacrhTerm,
+  searchTerm,
   pathName,
 }: PaginationBoxProps) => {
   const { replace } = useRouter();
@@ -20,7 +20,7 @@ const PaginationBox = ({
 
   function handlePageChange(event: React.ChangeEvent<unknown>, value: number) {
     const params = new URLSearchParams(searchParams);
-    params.set("query", seacrhTerm);
+    params.set("query", searchTerm);
 
     if (pathName === "title") {
       params.set("page", value.toString());

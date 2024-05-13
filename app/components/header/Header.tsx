@@ -3,7 +3,7 @@
 import Link from "next/link";
 import "./header.scss";
 import Image from "next/image";
-import logo from "./lib-logo.png";
+import logo from "./biblioteket.png";
 import Search from "./Search";
 
 const Header = () => {
