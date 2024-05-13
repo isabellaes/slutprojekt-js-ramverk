@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
-import Card from "../card/Card";
-import "./list.scss";
+import "./list.module.scss";
 
 type ListPropsType = {
   children: ReactNode;
