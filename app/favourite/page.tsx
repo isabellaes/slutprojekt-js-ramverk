@@ -22,7 +22,7 @@ export default function Page() {
 
   return (
     <Container>
-      <h1>Fav books</h1>
+      <h1 className={style.title}>Fav books</h1>
 
       {books.favouriteBooks.map((b) => (
         <List space="between">
@@ -41,7 +41,7 @@ export default function Page() {
         </List>
       ))}
 
-      <h1>Fav Authors</h1>
+      <h1 className={style.title}>Fav Authors</h1>
 
       {authors.map((a) => (
         <List space="between">
