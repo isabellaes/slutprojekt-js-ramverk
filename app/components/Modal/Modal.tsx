@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import "./modal.scss";
+import style from "./modal.module.scss";
 
 type ModalPropsType = {
   children: ReactNode;
@@ -7,8 +7,8 @@ type ModalPropsType = {
 
 const Modal = ({ children }: ModalPropsType) => {
   return (
-    <div className="modal">
-      <div className="content">{children}</div>
+    <div className={style.modal}>
+      <div className={style.content}>{children}</div>
     </div>
   );
 };

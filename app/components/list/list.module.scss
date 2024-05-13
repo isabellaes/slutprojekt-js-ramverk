@@ -1,0 +1,13 @@
+.list {
+  display: flex;
+  padding: 1em;
+  gap: 1em;
+  margin: 1em;
+  outline: 1px solid #ffd400;
+  border: 1px solid #ffd400;
+  border-radius: 5px;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  box-shadow: -2px -8px 62px 5px rgba(188, 188, 188, 0.61);
+}

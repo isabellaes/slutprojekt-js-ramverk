@@ -1,4 +1,4 @@
-import "./counter.scss";
+import styles from "./counter.module.scss";
 
 type CounterProps = {
   number: number;
@@ -7,8 +7,8 @@ type CounterProps = {
 
 const Counter = ({ number, title }: CounterProps) => {
   return (
-    <div className="counter">
-      <div className="circle">
+    <div className={styles.counter}>
+      <div className={styles.circle}>
         <h1>{number}</h1>
       </div>
       <p>{title}</p>

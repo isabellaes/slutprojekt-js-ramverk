@@ -3,7 +3,7 @@ import { AppDispatch } from "@/app/lib/features/store";
 import { Review } from "@/app/lib/utils/types";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import "./form.scss";
+import styles from "./form.module.scss";
 import CancelIcon from "@mui/icons-material/Cancel";
 
 type FormPropsType = {
@@ -25,7 +25,7 @@ const Form = ({ id, handleClose }: FormPropsType) => {
   }
 
   return (
-    <div className="review-form">
+    <div className={styles.form}>
       <div className="cancel">
         <CancelIcon onClick={handleClose} />
       </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import Container from "@/app/components/container/Container";
-import "../workpage.scss";
+import style from "../workpage.module.scss";
 import Button from "@/app/components/button/Button";
 import { useParams } from "next/navigation";
 import useFetchWork from "@/app/lib/hooks/useFetchWork";
@@ -72,10 +72,10 @@ export default function Page() {
   if (!book) return <div>Loading...</div>;
 
   return (
-    <div className="work-page">
+    <div className={style.workpage}>
       <Container>
-        <div className="row">
-          <div className="item">
+        <div className={style.row}>
+          <div className={style.item}>
             {book.covers ? (
               <img
                 src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-M.jpg`}
@@ -84,7 +84,7 @@ export default function Page() {
             ) : (
               <img src={defalaultImg.src}></img>
             )}
-            <div className="buttons">
+            <div className={style.buttons}>
               <FavouriteButton
                 checkIfFavourite={() => checkIfFavourite(book.key)}
                 handleAddToFavourite={() => handleAddToFavourite(book)}
@@ -98,10 +98,10 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="item">
+          <div className={style.item}>
             <h1>{book.title}</h1>
-            <p className="description">
-              <span className="bold">Description: </span>
+            <p className={style.description}>
+              <span className={style.bold}>Description: </span>
               {book.description ? (
                 <>
                   {typeof book.description === "string" ? (
@@ -116,20 +116,20 @@ export default function Page() {
             </p>
 
             <p>
-              <span className="bold">Published: </span>{" "}
+              <span className={style.bold}>Published: </span>{" "}
               {book.first_publish_date}
             </p>
             <p>
-              <span className="bold">First sentence: </span>
+              <span className={style.bold}>First sentence: </span>
               {book.first_sentence?.value}
             </p>
             <p>
-              <span className="bold"> Pages: </span>{" "}
+              <span className={style.bold}> Pages: </span>{" "}
               {pages != 0 ? `${pages}` : "199"}
             </p>
 
             <p>
-              <span className="bold">Subjects:</span> {book.subjects}
+              <span className={style.bold}>Subjects:</span> {book.subjects}
             </p>
           </div>
         </div>
