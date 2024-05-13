@@ -28,9 +28,10 @@ const Search = () => {
     }
   }
   return (
-    <div className={style.search}>
+    <div>
       <select
         name="search"
+        className={style.selector}
         id="search-select"
         onChange={(e) => {
           e.preventDefault();
@@ -45,9 +46,14 @@ const Search = () => {
         type="search"
         name="search"
         id="search"
+        className={style.search}
         onChange={(e) => setSearchTerm(e.currentTarget.value)}
       />
-      <button id="search-btn" onClick={() => handleSearch()}>
+      <button
+        id="search-btn"
+        className={style.btn}
+        onClick={() => handleSearch()}
+      >
         Search
       </button>
     </div>
