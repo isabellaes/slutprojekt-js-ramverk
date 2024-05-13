@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import "./list.module.scss";
+import style from "./list.module.scss";
 
 type ListPropsType = {
   children: ReactNode;
@@ -7,15 +7,7 @@ type ListPropsType = {
 };
 
 const List = ({ children, space }: ListPropsType) => {
-  return (
-    <div
-      className={
-        space === "between" ? "list row space-between" : "list row space-evenly"
-      }
-    >
-      {children}
-    </div>
-  );
+  return <div className={style.list}>{children}</div>;
 };
 
 export default List;
