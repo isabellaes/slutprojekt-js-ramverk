@@ -1,6 +1,5 @@
 import { fetchBooksBySubject } from "@/app/lib/utils/api";
 import Container from "@/app/components/container/Container";
-import List from "@/app/components/list/List";
 import Card from "@/app/components/card/Card";
 import { Subject } from "@/app/lib/utils/types";
 import Link from "next/link";
@@ -23,9 +22,9 @@ const Home = async () => {
       {data.map((x) => (
         <div key={x.key}>
           <h3 className={styles.subtitle}>{x.name.toLocaleUpperCase()}</h3>
-          <List key={x.key} space="evenly">
+          <div className={styles.row}>
             {x.works.map((w) => (
-              <Link key={w.key} href={w.key}>
+              <Link key={w.key} href={w.key} className={styles.link}>
                 <Card
                   key={w.key}
                   title={w.title}
@@ -33,7 +32,7 @@ const Home = async () => {
                 ></Card>
               </Link>
             ))}
-          </List>
+          </div>
         </div>
       ))}
     </Container>

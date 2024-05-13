@@ -5,3 +5,15 @@
 .subtitle {
   padding: 1em;
 }
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}
