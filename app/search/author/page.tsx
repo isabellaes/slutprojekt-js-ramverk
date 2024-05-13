@@ -25,13 +25,13 @@ export default async function Page({
       <>
         <p>Results: {data.numFound}</p>
         {data.docs.map((i) => (
-          <Link href={`/author/${i.key}`}>
+          <Link key={i.key} href={`/author/${i.key}`}>
             <p>{i.name}</p>
           </Link>
         ))}
         <PaginationBox
           total={data.numFound}
-          page={Number(searchParams.page)}
+          page={Number(searchParams.page) / 100}
           seacrhTerm={searchParams.query}
           pathName={searchParams.subject}
         />
