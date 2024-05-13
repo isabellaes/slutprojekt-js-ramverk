@@ -25,7 +25,7 @@ export default async function Page({
       <>
         <p>Results: {data.numFound}</p>
         {data?.docs.map((i) => (
-          <Link href={`${i.key}`}>
+          <Link key={i.key} href={`${i.key}`}>
             <p>{i.title}</p>
           </Link>
         ))}
