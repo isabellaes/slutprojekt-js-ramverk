@@ -1,7 +1,7 @@
 "use client";
 
 import Container from "@/app/components/container/Container";
-import "../workpage.scss";
+import "../workpage.module.scss";
 import Button from "@/app/components/button/Button";
 import { useParams } from "next/navigation";
 import useFetchWork from "@/app/lib/hooks/useFetchWork";

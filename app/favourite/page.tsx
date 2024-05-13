@@ -13,7 +13,7 @@ import {
   removeAuthor,
   selectAuthors,
 } from "../lib/features/authors/authorSlice";
-import "./favourite.scss";
+import style from "./favourite.module.scss";
 
 export default function Page() {
   const books = useSelector(selectBooks);
@@ -26,7 +26,7 @@ export default function Page() {
 
       {books.favouriteBooks.map((b) => (
         <List space="between">
-          <div className="row">
+          <div className={style.row}>
             <img src={b.img_url} alt="cover" />
             <div>
               <h3>{b.title}</h3>
@@ -45,7 +45,7 @@ export default function Page() {
 
       {authors.map((a) => (
         <List space="between">
-          <div className="row">
+          <div className={style.row}>
             <img src={a.img_url} alt="cover" />
             <div>
               <h2>{a.name}</h2>
