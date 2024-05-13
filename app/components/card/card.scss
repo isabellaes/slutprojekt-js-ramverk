@@ -1,11 +1,25 @@
 .card {
+  padding: 0.5em;
+  margin: 0.5em;
+  transition: box-shadow background-color 0.1s ease-in-out;
+  box-shadow: -2px -8px 62px 5px rgba(188, 188, 188, 0.61);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
   img {
     max-height: 200px;
   }
   p {
+    margin-top: 0.5em;
     white-space: nowrap;
     max-width: 120px;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-weight: bold;
   }
+}
+
+.card:hover {
+  box-shadow: -2px -8px 62px 5px rgba(255, 177, 75, 0.61);
 }
