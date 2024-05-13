@@ -32,7 +32,7 @@ export default async function Page({
         <PaginationBox
           total={data.numFound}
           page={Number(searchParams.page)}
-          seacrhTerm={searchParams.query}
+          searchTerm={searchParams.query}
           pathName={searchParams.subject}
         />
       </>
