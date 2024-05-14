@@ -1,3 +1,5 @@
+@import "./variables.scss";
+
 @mixin Button($color) {
   background-color: $color;
   border-radius: 3px;
@@ -7,8 +9,8 @@
   height: fit-content;
   transition: background-color box-shadow 1s ease-in-out;
   border: none;
-  color: white;
-  outline: 2px solid yellow;
+  color: $white;
+  outline: 2px solid $yellow;
 }
 
 @mixin FlexRow {
