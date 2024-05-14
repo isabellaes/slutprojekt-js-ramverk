@@ -1,6 +1,7 @@
+@import "../style/mixin.scss";
+
 .workpage {
-  display: flex;
-  flex-direction: row;
+  @include FlexRow;
 
   img {
     max-width: 300px;
@@ -25,13 +26,11 @@
   }
 
   .row {
-    display: flex;
-    flex-direction: row;
+    @include FlexRow;
     gap: 1em;
   }
   .buttons {
-    display: flex;
-    flex-direction: column;
+    @include FlexColumn;
     gap: 1em;
     padding-top: 1em;
   }

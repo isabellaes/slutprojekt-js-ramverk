@@ -1,11 +1,12 @@
+@import "../../style/mixin.scss";
+@import "../../style/variables.scss";
+
 .card {
+  @include FlexColumnCenter;
   padding: 0.5em;
   margin: 0.5em;
   transition: box-shadow background-color 0.1s ease-in-out;
-  box-shadow: -2px -8px 62px 5px rgba(188, 188, 188, 0.61);
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+  box-shadow: -2px -8px 62px 5px $boxShadowColor;
 
   img {
     max-height: 200px;

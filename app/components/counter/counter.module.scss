@@ -1,26 +1,24 @@
+@import "../../style/mixin.scss";
+@import "../../style/variables.scss";
+
 .counter {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  @include FlexColumnCenter;
   gap: 1em;
   margin: 1em;
 
   .circle {
-    outline: 1px solid #ffd400;
-    border: 1px solid #ffd400;
+    outline: 1px solid $yellow;
+    border: 1px solid $yellow;
     padding: 1em;
     border-radius: 50%;
     height: 150px;
     width: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: -2px -8px 62px 5px rgba(188, 188, 188, 0.61);
-    background-color: white;
+    @include FlexColumnCenter;
+    box-shadow: -2px -8px 62px 5px $boxShadowColor;
+    background-color: $white;
 
     h1 {
-      color: #2e294e;
+      color: $darkBlue;
       text-align: center;
     }
   }

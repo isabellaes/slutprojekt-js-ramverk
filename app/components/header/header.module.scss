@@ -1,23 +1,24 @@
+@import "../../style/mixin.scss";
+@import "../../style/variables.scss";
+
 .header {
   width: 100vw;
   height: 8em;
-  display: flex;
-  flex-direction: row;
+  @include FlexRow;
   align-items: center;
   justify-content: space-between;
   padding: 1em 2em 1em 2em;
   position: fixed;
-  background-color: #2e294e;
+  background-color: $darkBlue;
 
   nav {
-    display: flex;
-    flex-direction: row;
+    @include FlexRow;
     align-items: center;
     gap: 1em;
   }
 
   .link {
     text-decoration: none;
-    color: white;
+    color: $white;
   }
 }

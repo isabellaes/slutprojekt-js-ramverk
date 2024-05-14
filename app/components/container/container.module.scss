@@ -1,12 +1,14 @@
+@import "../../style/mixin.scss";
+@import "../../style/variables.scss";
+
 .container {
-  display: flex;
-  flex-direction: column;
+  @include FlexColumn;
   margin: 1em;
   padding: 2em;
   border-radius: 20px;
-  background-color: white;
+  background-color: $white;
   min-height: 80vh;
   width: 80vw;
   gap: 1em;
-  box-shadow: 4px 5px 75px -6px rgba(204, 205, 205, 0.61);
+  box-shadow: 4px 5px 75px -6px $boxShadowColor;
 }

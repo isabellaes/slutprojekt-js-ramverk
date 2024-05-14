@@ -1,13 +1,12 @@
+@import "../style/mixin.scss";
+
 .statistics {
   .bold {
     font-weight: bolder;
   }
 
   .review {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    @include FlexColumnCenter;
   }
 
   .title {
@@ -16,13 +15,11 @@
   }
 
   .counters {
-    display: flex;
-    flex-direction: row;
+    @include FlexRow;
     justify-content: space-evenly;
   }
   .column {
-    display: flex;
-    flex-direction: column;
+    @include FlexColumn;
     gap: 1em;
 
     .text {
@@ -36,11 +33,8 @@
   }
 
   .buttons {
-    display: flex;
-    flex-direction: column;
+    @include FlexColumnCenter;
     gap: 2em;
-    justify-content: center;
-    align-items: center;
     padding: 1em;
   }
 }

@@ -1,6 +1,6 @@
+@import "../../style/mixin.scss";
 .form {
-  display: flex;
-  flex-direction: column;
+  @include FlexColumn;
   align-items: center;
   padding: 2em;
   gap: 1em;
@@ -12,8 +12,7 @@
   }
 
   form {
-    display: flex;
-    flex-direction: column;
+    @include FlexColumn;
     padding: 1em;
     gap: 1em;
   }

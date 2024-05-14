@@ -1,16 +1,19 @@
+@import "../../style/mixin.scss";
+
 .btn {
-  background-color: #f97f04;
-  border-radius: 3px;
-  padding: 1em;
-  min-width: 8em;
-  max-width: 15em;
-  height: fit-content;
-  transition: background-color box-shadow 0.2s ease-in-out;
-  border: none;
-  color: white;
+  @include Button(#f97f04);
 }
 
 .btn:hover {
-  background-color: #fc8e20;
-  box-shadow: -2px -8px 62px 5px rgba(254, 145, 0, 0.61);
+  background-color: #f7891a;
+  box-shadow: -2px -8px 62px 5px rgba(254, 144, 0, 0.401);
+}
+
+.error {
+  @include Button(#f90404);
+}
+
+.error:hover {
+  background-color: #fa1d1d;
+  box-shadow: -2px -8px 62px 5px rgba(254, 0, 0, 0.245);
 }
