@@ -24,42 +24,61 @@ export default function Page() {
     <Container>
       <h1 className={style.title}>Fav books</h1>
 
-      {books.favouriteBooks.map((b) => (
-        <List space="between">
-          <div className={style.row}>
-            <img src={b.img_url} alt="cover" />
-            <div>
-              <h3>{b.title}</h3>
-              <p>{b.first_publish_date}</p>
-              <p>{b.number_of_pages}</p>
-            </div>
-          </div>
-          <Button
-            handleOnClick={() => dispatch(removeBookFromFavourite(b.key))}
-            title="Remove"
-            color="error"
-          ></Button>
-        </List>
-      ))}
+      {books.favouriteBooks.length != 0 ? (
+        <>
+          {books.favouriteBooks.map((b) => (
+            <List space="between">
+              <div className={style.row}>
+                <img src={b.img_url} alt="cover" />
+                <div>
+                  <h3>{b.title}</h3>
+                  <p>{b.first_publish_date}</p>
+                  <p>{b.number_of_pages}</p>
+                </div>
+              </div>
+              <Button
+                handleOnClick={() => dispatch(removeBookFromFavourite(b.key))}
+                title="Remove"
+                color="error"
+              ></Button>
+            </List>
+          ))}
+        </>
+      ) : (
+        <>
+          <List space="between">
+            <p>No favourites</p>
+          </List>
+        </>
+      )}
 
       <h1 className={style.title}>Fav Authors</h1>
-
-      {authors.map((a) => (
-        <List space="between">
-          <div className={style.row}>
-            <img src={a.img_url} alt="cover" />
-            <div>
-              <h2>{a.name}</h2>
-              <p>{a.fuller_name}</p>
-              <p>{a.birth_date}</p>
-            </div>
-          </div>
-          <Button
-            handleOnClick={() => dispatch(removeAuthor(a.key))}
-            title="Remove"
-          ></Button>
-        </List>
-      ))}
+      {authors.length != 0 ? (
+        <>
+          {authors.map((a) => (
+            <List space="between">
+              <div className={style.row}>
+                <img src={a.img_url} alt="cover" />
+                <div>
+                  <h2>{a.name}</h2>
+                  <p>{a.fuller_name}</p>
+                  <p>{a.birth_date}</p>
+                </div>
+              </div>
+              <Button
+                handleOnClick={() => dispatch(removeAuthor(a.key))}
+                title="Remove"
+              ></Button>
+            </List>
+          ))}
+        </>
+      ) : (
+        <>
+          <List space="between">
+            <p>No favourites</p>
+          </List>
+        </>
+      )}
     </Container>
   );
 }
