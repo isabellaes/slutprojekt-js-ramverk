@@ -1,0 +1,29 @@
+@mixin Button($color) {
+  background-color: $color;
+  border-radius: 3px;
+  padding: 1em;
+  min-width: 8em;
+  max-width: 15em;
+  height: fit-content;
+  transition: background-color box-shadow 1s ease-in-out;
+  border: none;
+  color: white;
+  outline: 2px solid yellow;
+}
+
+@mixin FlexRow {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin FlexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin FlexColumnCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
