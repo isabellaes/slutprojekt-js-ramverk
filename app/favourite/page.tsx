@@ -37,6 +37,7 @@ export default function Page() {
           <Button
             handleOnClick={() => dispatch(removeBookFromFavourite(b.key))}
             title="Remove"
+            color="error"
           ></Button>
         </List>
       ))}

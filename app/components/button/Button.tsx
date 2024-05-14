@@ -5,15 +5,16 @@ import style from "./button.module.scss";
 type ButtonProps = {
   handleOnClick: () => void;
   title: string;
+  color?: "error";
 };
 
-const Button = ({ handleOnClick, title}: ButtonProps) => {
+const Button = ({ handleOnClick, title, color }: ButtonProps) => {
   return (
     <button
-      className={style.btn}
+      className={color === "error" ? style.error : style.btn}
       onClick={handleOnClick}
     >
-      {title}
+      {title.toLocaleUpperCase()}
     </button>
   );
 };

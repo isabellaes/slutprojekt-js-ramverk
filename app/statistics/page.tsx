@@ -101,6 +101,7 @@ export default function Page() {
 
               <Button
                 title="Remove"
+                color="error"
                 handleOnClick={() => dispatch(removeBookFromReadList(b.key))}
               ></Button>
             </div>
