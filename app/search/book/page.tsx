@@ -29,7 +29,7 @@ export default async function Page({
 
       <div className={style.content}>
         {data.docs.map((i) => (
-          <Link key={i.key} href={`${i.key}`}>
+          <Link key={i.key} href={i.key}>
             <List space="between">
               <div>
                 {i.cover_i ? (
