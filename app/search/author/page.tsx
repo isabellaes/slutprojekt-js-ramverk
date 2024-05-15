@@ -25,8 +25,6 @@ export default async function Page({
     offset
   );
 
-  console.log(offset);
-
   return (
     <Container>
       <h1 className={style.title}>Search results for "{searchParams.query}"</h1>
