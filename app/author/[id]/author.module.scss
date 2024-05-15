@@ -22,8 +22,6 @@
     padding: 1em;
   }
   .buttons {
-    @include FlexColumn;
-    gap: 1em;
-    padding-top: 1em;
+    padding-left: 1em;
   }
 }

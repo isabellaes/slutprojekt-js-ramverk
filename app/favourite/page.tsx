@@ -67,7 +67,10 @@ export default function Page() {
         <>
           {authors.map((a) => (
             <List space="between" key={a.key}>
-              <Link href={a.key} className={style.link}>
+              <Link
+                href={a.key.replace("/authors/", "/author/")}
+                className={style.link}
+              >
                 <div className={style.row}>
                   <img src={a.img_url} alt="cover" />
                   <div>
