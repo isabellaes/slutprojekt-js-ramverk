@@ -16,6 +16,8 @@ import {
 import { Book } from "@/app/lib/utils/types";
 import defalaultImg from "../../images/No-Image-Placeholder.svg.png";
 import FavouriteButton from "@/app/components/favourite/FavouriteButton";
+import CardSkeleton from "@/app/components/skeletons/CardSkeleton";
+import ContentSkeleton from "@/app/components/skeletons/ContentSkeleton";
 
 export default function Page() {
   const params = useParams<{ id: string }>();
@@ -69,70 +71,74 @@ export default function Page() {
     dispatch(addToFavouriteBook(favBook));
   }
 
-  if (!book) return <div>Loading...</div>;
-
   return (
     <div className={style.workpage}>
       <Container>
-        <div className={style.row}>
-          <div className={style.item}>
-            {book.covers ? (
-              <img
-                src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-M.jpg`}
-                alt="cover"
-              />
-            ) : (
-              <img src={defalaultImg.src}></img>
-            )}
-            <div className={style.buttons}>
-              <FavouriteButton
-                checkIfFavourite={() => checkIfFavourite(book.key)}
-                handleAddToFavourite={() => handleAddToFavourite(book)}
-                handleRemoveFavourite={() => handleRemoveFavourite(book.key)}
-              />
+        {book ? (
+          <div className={style.row}>
+            <div className={style.item}>
+              {book.covers ? (
+                <img
+                  src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-M.jpg`}
+                  alt="cover"
+                />
+              ) : (
+                <img src={defalaultImg.src}></img>
+              )}
+              <div className={style.buttons}>
+                <FavouriteButton
+                  checkIfFavourite={() => checkIfFavourite(book.key)}
+                  handleAddToFavourite={() => handleAddToFavourite(book)}
+                  handleRemoveFavourite={() => handleRemoveFavourite(book.key)}
+                />
 
-              <Button
-                handleOnClick={() => handleAddToReadList(book)}
-                title="Mark as finished"
-              />
+                <Button
+                  handleOnClick={() => handleAddToReadList(book)}
+                  title="Mark as finished"
+                />
+              </div>
+            </div>
+            <div className={style.item}>
+              <h1>{book.title}</h1>
+              <p className={style.description}>
+                <span className={style.bold}>Description: </span>
+                {book.description ? (
+                  <>
+                    {typeof book.description === "string" ? (
+                      <>{book.description}</>
+                    ) : (
+                      <>{book.description.value}</>
+                    )}
+                  </>
+                ) : (
+                  ""
+                )}
+              </p>
+
+              <p>
+                <span className={style.bold}>Published: </span>{" "}
+                {book.first_publish_date}
+              </p>
+              <p>
+                <span className={style.bold}>First sentence: </span>
+                {book.first_sentence?.value}
+              </p>
+              <p>
+                <span className={style.bold}> Pages: </span>{" "}
+                {pages != 0 ? `${pages}` : "199"}
+              </p>
+
+              <p>
+                <span className={style.bold}>Subjects:</span> {book.subjects}
+              </p>
             </div>
           </div>
-
-          <div className={style.item}>
-            <h1>{book.title}</h1>
-            <p className={style.description}>
-              <span className={style.bold}>Description: </span>
-              {book.description ? (
-                <>
-                  {typeof book.description === "string" ? (
-                    <>{book.description}</>
-                  ) : (
-                    <>{book.description.value}</>
-                  )}
-                </>
-              ) : (
-                ""
-              )}
-            </p>
-
-            <p>
-              <span className={style.bold}>Published: </span>{" "}
-              {book.first_publish_date}
-            </p>
-            <p>
-              <span className={style.bold}>First sentence: </span>
-              {book.first_sentence?.value}
-            </p>
-            <p>
-              <span className={style.bold}> Pages: </span>{" "}
-              {pages != 0 ? `${pages}` : "199"}
-            </p>
-
-            <p>
-              <span className={style.bold}>Subjects:</span> {book.subjects}
-            </p>
+        ) : (
+          <div className={style.row}>
+            <CardSkeleton />
+            <ContentSkeleton />
           </div>
-        </div>
+        )}
       </Container>
     </div>
   );

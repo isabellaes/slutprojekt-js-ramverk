@@ -15,6 +15,8 @@ import {
 } from "@/app/lib/features/authors/authorSlice";
 import FavouriteButton from "@/app/components/favourite/FavouriteButton";
 import style from "./author.module.scss";
+import CardSkeleton from "@/app/components/skeletons/CardSkeleton";
+import ContentSkeleton from "@/app/components/skeletons/ContentSkeleton";
 
 export default function Page() {
   const [author, setAuthor] = useState<Author>();
@@ -56,44 +58,52 @@ export default function Page() {
     dispatch(removeAuthor(key));
   }
 
-  if (!author) {
-    return <p>Loading...</p>;
-  }
   return (
     <div className={style.author}>
       <Container>
-        <div className={style.row}>
-          <div className={style.column}>
-            {author.photos ? (
-              <img
-                src={`https://covers.openlibrary.org/a/id/${author.photos[0]}-L.jpg`}
-                alt=""
-              />
-            ) : (
-              <img src={blankprofile.src} alt="" />
-            )}
-            <FavouriteButton
-              checkIfFavourite={() => checkIfFavourite(author.key)}
-              handleAddToFavourite={() => handleAddToFavourite(author)}
-              handleRemoveFavourite={() => handleRemoveFavourite(author.key)}
-            />
+        {author ? (
+          <div className={style.row}>
+            <div className={style.column}>
+              {author.photos ? (
+                <img
+                  src={`https://covers.openlibrary.org/a/id/${author.photos[0]}-L.jpg`}
+                  alt=""
+                />
+              ) : (
+                <img src={blankprofile.src} alt="" />
+              )}
+              <div className={style.buttons}>
+                <FavouriteButton
+                  checkIfFavourite={() => checkIfFavourite(author.key)}
+                  handleAddToFavourite={() => handleAddToFavourite(author)}
+                  handleRemoveFavourite={() =>
+                    handleRemoveFavourite(author.key)
+                  }
+                />
+              </div>
+            </div>
+            <div>
+              <h1>{author.name}</h1>
+              <p>{author.personal_name}</p>
+              {author.bio ? (
+                <>
+                  {typeof author.bio === "string" ? (
+                    <p>{author.bio}</p>
+                  ) : (
+                    <p>{author.bio.value}</p>
+                  )}
+                </>
+              ) : (
+                <></>
+              )}
+            </div>
           </div>
-          <div>
-            <h1>{author.name}</h1>
-            <p>{author.personal_name}</p>
-            {author.bio ? (
-              <>
-                {typeof author.bio === "string" ? (
-                  <p>{author.bio}</p>
-                ) : (
-                  <p>{author.bio.value}</p>
-                )}
-              </>
-            ) : (
-              <></>
-            )}
+        ) : (
+          <div className={style.row}>
+            <CardSkeleton />
+            <ContentSkeleton />
           </div>
-        </div>
+        )}
       </Container>
     </div>
   );
