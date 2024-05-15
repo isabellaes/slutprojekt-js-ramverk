@@ -16,6 +16,12 @@ Online Library to find information about books and authors.
 ## Installation
 
 ```bash
+git clone https://github.com/isabellaes/slutprojekt-js-ramverk.git
+
+```
+
+```bash
+npm i
 npm run dev
 
 ```
