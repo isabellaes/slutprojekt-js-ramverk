@@ -19,6 +19,7 @@ import { removeBookFromReadList } from "../lib/features/books/bookSlice";
 import { useState } from "react";
 import Counter from "../components/counter/Counter";
 import style from "./statistics.module.scss";
+import Link from "next/link";
 
 export default function Page() {
   const [selected, setSelected] = useState<string>("");
@@ -70,11 +71,13 @@ export default function Page() {
         {books.readList.map((b) => (
           <List space="between">
             <div className={style.column}>
-              <img src={b.img_url} alt="" />
-              <div className={style.text}>
-                <h3>{b.title}</h3>
-                <p>{b.number_of_pages}</p>
-              </div>
+              <Link href={b.key} className={style.link}>
+                <img src={b.img_url} alt="" />
+                <div className={style.text}>
+                  <h3>{b.title}</h3>
+                  <p>{b.number_of_pages}</p>
+                </div>
+              </Link>
             </div>
 
             {b.revies?.rating ? (

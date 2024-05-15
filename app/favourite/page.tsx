@@ -14,6 +14,7 @@ import {
   selectAuthors,
 } from "../lib/features/authors/authorSlice";
 import style from "./favourite.module.scss";
+import Link from "next/link";
 
 export default function Page() {
   const books = useSelector(selectBooks);
@@ -22,20 +23,25 @@ export default function Page() {
 
   return (
     <Container>
-      <h1 className={style.title}>Fav books {books.favouriteBooks.length}</h1>
+      <h1 className={style.title}>
+        Favourite books{" "}
+        <span className={style.lightText}>({books.favouriteBooks.length})</span>
+      </h1>
 
       {books.favouriteBooks.length != 0 ? (
         <>
           {books.favouriteBooks.map((b) => (
             <List space="between">
-              <div className={style.row}>
-                <img src={b.img_url} alt="cover" />
-                <div>
-                  <h3>{b.title}</h3>
-                  <p>{b.first_publish_date}</p>
-                  <p>{b.number_of_pages}</p>
+              <Link href={b.key} className={style.link}>
+                <div className={style.row}>
+                  <img src={b.img_url} alt="cover" />
+                  <div>
+                    <h3>{b.title}</h3>
+                    <p>{b.first_publish_date}</p>
+                    <p>{b.number_of_pages}</p>
+                  </div>
                 </div>
-              </div>
+              </Link>
               <Button
                 handleOnClick={() => dispatch(removeBookFromFavourite(b.key))}
                 title="Remove"
@@ -52,19 +58,25 @@ export default function Page() {
         </>
       )}
 
-      <h1 className={style.title}>Fav Authors {authors.length}</h1>
+      <h1 className={style.title}>
+        Favourite Authors{" "}
+        <span className={style.lightText}>({authors.length})</span>
+      </h1>
       {authors.length != 0 ? (
         <>
           {authors.map((a) => (
             <List space="between">
-              <div className={style.row}>
-                <img src={a.img_url} alt="cover" />
-                <div>
-                  <h2>{a.name}</h2>
-                  <p>{a.fuller_name}</p>
-                  <p>{a.birth_date}</p>
+              <Link href={a.key} className={style.link}>
+                <div className={style.row}>
+                  <img src={a.img_url} alt="cover" />
+                  <div>
+                    <h2>{a.name}</h2>
+                    <p>{a.fuller_name}</p>
+                    <p>{a.birth_date}</p>
+                  </div>
                 </div>
-              </div>
+              </Link>
+
               <Button
                 handleOnClick={() => dispatch(removeAuthor(a.key))}
                 title="Remove"
