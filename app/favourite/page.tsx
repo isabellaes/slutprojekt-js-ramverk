@@ -22,7 +22,7 @@ export default function Page() {
 
   return (
     <Container>
-      <h1 className={style.title}>Fav books</h1>
+      <h1 className={style.title}>Fav books {books.favouriteBooks.length}</h1>
 
       {books.favouriteBooks.length != 0 ? (
         <>
@@ -52,7 +52,7 @@ export default function Page() {
         </>
       )}
 
-      <h1 className={style.title}>Fav Authors</h1>
+      <h1 className={style.title}>Fav Authors {authors.length}</h1>
       {authors.length != 0 ? (
         <>
           {authors.map((a) => (

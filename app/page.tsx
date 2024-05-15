@@ -4,6 +4,8 @@ import Card from "@/app/components/card/Card";
 import { Subject } from "@/app/lib/utils/types";
 import Link from "next/link";
 import styles from "./style/home.module.scss";
+import { Suspense } from "react";
+import CardSkeleton from "./components/skeletons/CardSkeleton";
 
 const Home = async () => {
   const data_subject_romance: Subject = await fetchBooksBySubject("romance");
@@ -25,11 +27,13 @@ const Home = async () => {
           <div className={styles.row}>
             {x.works.map((w) => (
               <Link key={w.key} href={w.key} className={styles.link}>
-                <Card
-                  key={w.key}
-                  title={w.title}
-                  img={`https://covers.openlibrary.org/b/id/${w.cover_id}-M.jpg`}
-                ></Card>
+                <Suspense fallback={<CardSkeleton />}>
+                  <Card
+                    key={w.key}
+                    title={w.title}
+                    img={`https://covers.openlibrary.org/b/id/${w.cover_id}-M.jpg`}
+                  ></Card>
+                </Suspense>
               </Link>
             ))}
           </div>
