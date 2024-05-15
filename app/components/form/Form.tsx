@@ -22,11 +22,12 @@ const Form = ({ id, handleClose }: FormPropsType) => {
       const newReview: Review = { key: id, rating: rating, text: review };
       dispatch(addReview(newReview));
     }
+    handleClose();
   }
 
   return (
     <div className={styles.form}>
-      <div className="cancel">
+      <div className={styles.cancel}>
         <CancelIcon onClick={handleClose} />
       </div>
 
