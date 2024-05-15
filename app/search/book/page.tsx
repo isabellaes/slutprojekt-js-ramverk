@@ -16,18 +16,19 @@ export default async function Page({
     subject: string;
   };
 }) {
-  const data: SearchResult = await fetchBookByTitle(
-    searchParams.query,
-    searchParams.page
-  );
+  const offset =
+    searchParams.page === "1"
+      ? searchParams.page
+      : (Number(searchParams.page) - 10).toString();
+  const data: SearchResult = await fetchBookByTitle(searchParams.query, offset);
 
   return (
     <Container>
-      <h1 className={style.title}>Search Page</h1>
-      <p className={style.title}>Results: {data.numFound}</p>
+      <h1 className={style.title}>Search results for "{searchParams.query}"</h1>
+      <p className={style.title}>Total: {data.numFound}</p>
 
       <div className={style.content}>
-        {data?.docs.map((i) => (
+        {data.docs.map((i) => (
           <Link key={i.key} href={`${i.key}`}>
             <List space="between">
               <div>
@@ -47,7 +48,7 @@ export default async function Page({
 
         <PaginationBox
           total={data.numFound}
-          page={Number(searchParams.page)}
+          page={Number(searchParams.page) / 10}
           searchTerm={searchParams.query}
           pathName={searchParams.subject}
         />

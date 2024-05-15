@@ -14,7 +14,7 @@ import {
 export async function fetchBooksBySubject(query: string): Promise<Subject> {
   const apiUrl = `https://openlibrary.org/subjects/${encodeURIComponent(
     query
-  )}.json`;
+  )}.json?&limit=8`;
 
   try {
     const response = await fetch(apiUrl);
@@ -22,7 +22,7 @@ export async function fetchBooksBySubject(query: string): Promise<Subject> {
       throw new Error("Network response was not ok.");
     }
     const data: Subject = await response.json();
-    return { ...data, works: data.works.slice(0, 8) };
+    return data;
   } catch (error) {
     console.error("Error fetching data:", error);
     throw error;
@@ -52,7 +52,7 @@ export async function fetchBookByTitle(
 ): Promise<SearchResult> {
   const apiUrl = `https://openlibrary.org/search.json?title=${encodeURIComponent(
     query
-  )}&page=${page}`;
+  )}&offset=${page}&limit=10`;
 
   try {
     const response = await fetch(apiUrl);
@@ -67,7 +67,6 @@ export async function fetchBookByTitle(
   }
 }
 
-//change this function to only fetch editions from work
 export async function fetchAverageNumberOfPages(
   query: string
 ): Promise<number> {
@@ -113,7 +112,7 @@ export async function fetchAuthorByName(
   query: string,
   page: string
 ): Promise<SearchResult> {
-  const apiUrl = `https://openlibrary.org/search/authors.json?q=${query}&offset=${page}`;
+  const apiUrl = `https://openlibrary.org/search/authors.json?q=${query}&offset=${page}&limit=10`;
   try {
     const response = await fetch(apiUrl);
     if (!response.ok) {

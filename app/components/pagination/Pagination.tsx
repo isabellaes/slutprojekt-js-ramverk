@@ -24,19 +24,19 @@ const PaginationBox = ({
     params.set("query", searchTerm);
 
     if (pathName === "title") {
-      params.set("page", value.toString());
+      params.set("page", (value * 10).toString());
       replace(`/search/book?${params.toString()}`);
     }
 
     if (pathName === "author") {
-      params.set("page", (value * 100).toString());
+      params.set("page", (value * 10).toString());
       replace(`/search/author?${params.toString()}`);
     }
   }
   return (
     <div className={style.pagination}>
       <Pagination
-        count={Math.ceil(total / 100)}
+        count={Math.ceil(total / 10)}
         page={page}
         onChange={handlePageChange}
       />

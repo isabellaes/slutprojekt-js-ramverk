@@ -16,15 +16,21 @@ export default async function Page({
     subject: string;
   };
 }) {
+  const offset =
+    searchParams.page === "1"
+      ? searchParams.page
+      : (Number(searchParams.page) - 10).toString();
   const data: SearchResult = await fetchAuthorByName(
     searchParams.query,
-    searchParams.page
+    offset
   );
+
+  console.log(offset);
 
   return (
     <Container>
-      <h1 className={style.title}>Searchresult "{searchParams.query}"</h1>
-      <p className={style.title}>Results: {data.numFound}</p>
+      <h1 className={style.title}>Search results for "{searchParams.query}"</h1>
+      <p className={style.title}>Total: {data.numFound}</p>
 
       <div className={style.content}>
         {data.docs.map((i) => (
@@ -39,7 +45,7 @@ export default async function Page({
         ))}
         <PaginationBox
           total={data.numFound}
-          page={Number(searchParams.page) / 100}
+          page={Number(searchParams.page) / 10}
           searchTerm={searchParams.query}
           pathName={searchParams.subject}
         />

@@ -21,7 +21,7 @@ const Search = () => {
         replace(`/search/book?${params.toString()}`);
       }
       if (searchValue === "author") {
-        params.set("page", "0");
+        params.set("page", "1");
         params.set("subject", "author");
         replace(`/search/author?${params.toString()}`);
       }
