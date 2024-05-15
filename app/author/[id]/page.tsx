@@ -14,7 +14,7 @@ import {
   selectAuthors,
 } from "@/app/lib/features/authors/authorSlice";
 import FavouriteButton from "@/app/components/favourite/FavouriteButton";
-import style from "./author.module.scss";
+import style from "../author.module.scss";
 import CardSkeleton from "@/app/components/skeletons/CardSkeleton";
 import ContentSkeleton from "@/app/components/skeletons/ContentSkeleton";
 

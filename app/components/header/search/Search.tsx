@@ -19,11 +19,13 @@ const Search = () => {
         params.set("page", "1");
         params.set("subject", "title");
         replace(`/search/book?${params.toString()}`);
+        setSearchTerm("");
       }
       if (searchValue === "author") {
         params.set("page", "1");
         params.set("subject", "author");
         replace(`/search/author?${params.toString()}`);
+        setSearchTerm("");
       }
     }
   }
@@ -46,6 +48,7 @@ const Search = () => {
         type="search"
         name="search"
         id="search"
+        value={serchTerm}
         className={style.search}
         onChange={(e) => setSearchTerm(e.currentTarget.value)}
       />
