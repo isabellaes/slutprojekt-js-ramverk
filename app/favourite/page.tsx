@@ -31,7 +31,7 @@ export default function Page() {
       {books.favouriteBooks.length != 0 ? (
         <>
           {books.favouriteBooks.map((b) => (
-            <List space="between">
+            <List space="between" key={b.key}>
               <Link href={b.key} className={style.link}>
                 <div className={style.row}>
                   <img src={b.img_url} alt="cover" />
@@ -42,11 +42,13 @@ export default function Page() {
                   </div>
                 </div>
               </Link>
-              <Button
-                handleOnClick={() => dispatch(removeBookFromFavourite(b.key))}
-                title="Remove"
-                color="error"
-              ></Button>
+              <div className={style.buttons}>
+                <Button
+                  handleOnClick={() => dispatch(removeBookFromFavourite(b.key))}
+                  title="Remove"
+                  color="error"
+                ></Button>
+              </div>
             </List>
           ))}
         </>
@@ -65,7 +67,7 @@ export default function Page() {
       {authors.length != 0 ? (
         <>
           {authors.map((a) => (
-            <List space="between">
+            <List space="between" key={a.key}>
               <Link href={a.key} className={style.link}>
                 <div className={style.row}>
                   <img src={a.img_url} alt="cover" />
@@ -77,10 +79,12 @@ export default function Page() {
                 </div>
               </Link>
 
-              <Button
-                handleOnClick={() => dispatch(removeAuthor(a.key))}
-                title="Remove"
-              ></Button>
+              <div className={style.buttons}>
+                <Button
+                  handleOnClick={() => dispatch(removeAuthor(a.key))}
+                  title="Remove"
+                ></Button>
+              </div>
             </List>
           ))}
         </>
