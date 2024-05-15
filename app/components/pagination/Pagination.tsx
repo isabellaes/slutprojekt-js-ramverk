@@ -2,6 +2,7 @@
 
 import { Pagination } from "@mui/material";
 import { useRouter, useSearchParams } from "next/navigation";
+import style from "./pagination.module.scss";
 
 type PaginationBoxProps = {
   total: number;
@@ -33,11 +34,13 @@ const PaginationBox = ({
     }
   }
   return (
-    <Pagination
-      count={Math.ceil(total / 100)}
-      page={page}
-      onChange={handlePageChange}
-    />
+    <div className={style.pagination}>
+      <Pagination
+        count={Math.ceil(total / 100)}
+        page={page}
+        onChange={handlePageChange}
+      />
+    </div>
   );
 };
 

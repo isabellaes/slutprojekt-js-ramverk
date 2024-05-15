@@ -48,7 +48,7 @@ export default function Page() {
         <h1 className={style.title}>Statistics</h1>
         <div className={style.counters}>
           <Counter number={books.readList.length} title="Read books"></Counter>
-          <Counter number={calculateTotal(numbers)} title="Pages" />
+          <Counter number={calculateTotal(numbers)} title="Total Pages" />
 
           <Counter number={booksWithReviews.length} title="Reviews"></Counter>
           <Counter
@@ -58,7 +58,7 @@ export default function Page() {
                 books.readList.length
               ) || 0
             }
-            title="Pages average"
+            title="Average pages"
           ></Counter>
           <Counter
             number={calculateAverageRating() || 0}
@@ -75,7 +75,7 @@ export default function Page() {
                 <img src={b.img_url} alt="" />
                 <div className={style.text}>
                   <h3>{b.title}</h3>
-                  <p>{b.number_of_pages}</p>
+                  <p>Pages: {b.number_of_pages}</p>
                 </div>
               </Link>
             </div>

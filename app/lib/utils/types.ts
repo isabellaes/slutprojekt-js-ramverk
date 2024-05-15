@@ -44,6 +44,7 @@ export type Doc = {
   key: string;
   title?: string;
   name?: string;
+  cover_i?: string;
 };
 
 export type Review = {

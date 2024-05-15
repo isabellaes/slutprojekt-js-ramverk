@@ -37,8 +37,7 @@ export default function Page() {
                   <img src={b.img_url} alt="cover" />
                   <div>
                     <h3>{b.title}</h3>
-                    <p>{b.first_publish_date}</p>
-                    <p>{b.number_of_pages}</p>
+                    <p>Pages: {b.number_of_pages}</p>
                   </div>
                 </div>
               </Link>
@@ -83,6 +82,7 @@ export default function Page() {
                 <Button
                   handleOnClick={() => dispatch(removeAuthor(a.key))}
                   title="Remove"
+                  color="error"
                 ></Button>
               </div>
             </List>

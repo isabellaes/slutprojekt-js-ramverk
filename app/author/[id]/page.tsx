@@ -8,13 +8,13 @@ import { useEffect, useState } from "react";
 import { fetchAuthorById } from "@/app/lib/utils/api";
 import { Author } from "@/app/lib/utils/types";
 import blankprofile from "../../images/blank-profile-picture-973460_640.png";
-import "./authorpage.scss";
 import {
   addAuthor,
   removeAuthor,
   selectAuthors,
 } from "@/app/lib/features/authors/authorSlice";
 import FavouriteButton from "@/app/components/favourite/FavouriteButton";
+import style from "./author.module.scss";
 
 export default function Page() {
   const [author, setAuthor] = useState<Author>();
@@ -60,10 +60,10 @@ export default function Page() {
     return <p>Loading...</p>;
   }
   return (
-    <div className="author">
+    <div className={style.author}>
       <Container>
-        <div className="row">
-          <div>
+        <div className={style.row}>
+          <div className={style.column}>
             {author.photos ? (
               <img
                 src={`https://covers.openlibrary.org/a/id/${author.photos[0]}-L.jpg`}

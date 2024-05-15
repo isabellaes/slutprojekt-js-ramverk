@@ -1,0 +1,6 @@
+@import "../../style/mixin.scss";
+
+.pagination {
+  @include FlexColumnCenter;
+  width: 100%;
+}

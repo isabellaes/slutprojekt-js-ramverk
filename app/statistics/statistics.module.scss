@@ -6,7 +6,8 @@
   }
 
   .review {
-    @include FlexColumnCenter;
+    @include FlexColumn;
+    padding: 1em;
   }
 
   .title {
@@ -33,7 +34,7 @@
   }
 
   .buttons {
-    @include FlexColumnCenter;
+    @include FlexColumn;
     gap: 2em;
     padding: 1em;
   }

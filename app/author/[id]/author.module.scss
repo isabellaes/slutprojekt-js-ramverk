@@ -1,3 +1,5 @@
+@import "../../style/mixin.scss";
+
 .author {
   img {
     max-width: 200px;
@@ -11,13 +13,16 @@
   }
 
   .row {
-    display: flex;
-    flex-direction: row;
+    @include FlexRow;
     gap: 1em;
   }
+
+  .column {
+    @include FlexColumn;
+    padding: 1em;
+  }
   .buttons {
-    display: flex;
-    flex-direction: column;
+    @include FlexColumn;
     gap: 1em;
     padding-top: 1em;
   }
