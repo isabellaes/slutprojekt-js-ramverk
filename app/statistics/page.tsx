@@ -7,7 +7,7 @@ import List from "../components/list/List";
 import Button from "../components/button/Button";
 import Modal from "../components/Modal/Modal";
 import Form from "../components/form/Form";
-import { useToggleModal } from "../lib/hooks/useToggleModal";
+import { useToggle } from "../lib/hooks/useToggleModal";
 import {
   calculateAverage,
   calculateTotal,
@@ -24,7 +24,7 @@ import Link from "next/link";
 export default function Page() {
   const [selected, setSelected] = useState<string>("");
   const books = useSelector(selectBooks);
-  const { open, toggle } = useToggleModal(false);
+  const { open, toggle } = useToggle(false);
 
   const booksWithReviews = filterBooksWithReviews(books.readList);
   const numbers = extractPageNumbersFromArray(books.readList);

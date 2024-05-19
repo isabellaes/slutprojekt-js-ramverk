@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const useToggleModal = (defaultValue: boolean) => {
+export const useToggle = (defaultValue: boolean) => {
   const [open, setToggle] = useState<boolean>(defaultValue);
 
   const toggle = () => {

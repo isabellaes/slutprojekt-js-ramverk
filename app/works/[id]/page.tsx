@@ -18,6 +18,8 @@ import defalaultImg from "../../images/No-Image-Placeholder.svg.png";
 import FavouriteButton from "@/app/components/favourite/FavouriteButton";
 import CardSkeleton from "@/app/components/skeletons/CardSkeleton";
 import ContentSkeleton from "@/app/components/skeletons/ContentSkeleton";
+import Snackbar from "@mui/material/Snackbar";
+import { useToggle } from "@/app/lib/hooks/useToggleModal";
 
 export default function Page() {
   const params = useParams<{ id: string }>();
@@ -25,6 +27,7 @@ export default function Page() {
   const books = useSelector(selectBooks);
 
   const { book, pages } = useFetchWork(params.id);
+  const { open, toggle } = useToggle(false);
 
   function handleAddToReadList(book: Book) {
     let photosrc;
@@ -93,7 +96,10 @@ export default function Page() {
                 />
 
                 <Button
-                  handleOnClick={() => handleAddToReadList(book)}
+                  handleOnClick={() => {
+                    handleAddToReadList(book);
+                    toggle();
+                  }}
                   title="Mark as finished"
                 />
               </div>
@@ -129,7 +135,7 @@ export default function Page() {
               </p>
 
               <p>
-                <span className={style.bold}>Subjects:</span> {book.subjects}
+                <span className={style.bold}>Subjects:</span> {book.subjects[0]}
               </p>
             </div>
           </div>
@@ -139,6 +145,12 @@ export default function Page() {
             <ContentSkeleton />
           </div>
         )}
+        <Snackbar
+          open={open}
+          autoHideDuration={2000}
+          onClose={toggle}
+          message="Book added to readlist"
+        />
       </Container>
     </div>
   );
