@@ -4,7 +4,7 @@ export function calculateAverage(total: number, quantity: number): number {
   return Math.floor(total / quantity);
 }
 
-export function calculateTotal(arr: number[]) {
+export function calculateTotal(arr: number[]): number {
   return arr.reduce((total, num) => {
     return Math.floor(total + num);
   }, 0);
@@ -17,6 +17,6 @@ export function extractPageNumbersFromArray(arr: Entry[] | Book[]): number[] {
   }, []);
 }
 
-export function filterBooksWithReviews(arr: Book[]) {
+export function filterBooksWithReviews(arr: Book[]): Book[] {
   return arr.filter((b) => b.revies);
 }
