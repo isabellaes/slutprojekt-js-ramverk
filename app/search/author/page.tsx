@@ -17,7 +17,7 @@ export default async function Page({
   };
 }) {
   const offset =
-    searchParams.page === "1"
+    searchParams.page === "0"
       ? searchParams.page
       : (Number(searchParams.page) - 10).toString();
   const data: SearchResult = await fetchAuthorByName(
