@@ -27,9 +27,15 @@ export default function Page() {
   useEffect(() => {
     const fetchData = async () => {
       const data: Author = await fetchAuthorById(params.id);
-      setAuthor(data);
+      if (!ignore) {
+        setAuthor(data);
+      }
     };
+    let ignore = false;
     fetchData();
+    return () => {
+      ignore = true;
+    };
   }, [params.id]);
 
   function handleAddToFavourite(author: Author) {
