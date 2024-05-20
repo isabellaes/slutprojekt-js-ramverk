@@ -1,6 +1,7 @@
 # Book Library
 
-Online Library to find information about books and authors. 
+Online Library to find information about books and authors.
+
 - A user can mark a book as read
 - Add book/author to favourite list
 - See detailed information about book/author
@@ -11,14 +12,18 @@ Online Library to find information about books and authors.
   - Total number of pages
   - Total number of ratings
   - Average rating value
-  - Average number of pages 
+  - Average number of pages
 
 ## Installation
+
+Clone project
 
 ```bash
 git clone https://github.com/isabellaes/slutprojekt-js-ramverk.git
 
 ```
+
+Install and run project
 
 ```bash
 npm i
