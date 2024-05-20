@@ -20,6 +20,7 @@ export default async function Page({
     searchParams.page === "1"
       ? searchParams.page
       : (Number(searchParams.page) - 10).toString();
+
   const data: SearchResult = await fetchBookByTitle(searchParams.query, offset);
 
   return (
@@ -49,7 +50,7 @@ export default async function Page({
         <PaginationBox
           total={data.numFound}
           page={Number(searchParams.page) / 10}
-          searchTerm={searchParams.query}
+          query={searchParams.query}
           pathName={searchParams.subject}
         />
       </div>

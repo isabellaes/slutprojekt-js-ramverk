@@ -44,7 +44,7 @@ export default async function Page({
         <PaginationBox
           total={data.numFound}
           page={Number(searchParams.page) / 10}
-          searchTerm={searchParams.query}
+          query={searchParams.query}
           pathName={searchParams.subject}
         />
       </div>

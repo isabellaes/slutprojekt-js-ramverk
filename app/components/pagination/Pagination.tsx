@@ -7,13 +7,13 @@ import style from "./pagination.module.scss";
 type PaginationBoxProps = {
   total: number;
   page: number;
-  searchTerm: string;
+  query: string;
   pathName: string;
 };
 const PaginationBox = ({
   total,
   page,
-  searchTerm,
+  query,
   pathName,
 }: PaginationBoxProps) => {
   const { replace } = useRouter();
@@ -21,7 +21,7 @@ const PaginationBox = ({
 
   function handlePageChange(event: React.ChangeEvent<unknown>, value: number) {
     const params = new URLSearchParams(searchParams);
-    params.set("query", searchTerm);
+    params.set("query", query);
 
     if (pathName === "title") {
       params.set("page", (value * 10).toString());

@@ -14,7 +14,7 @@ import {
 export async function fetchBooksBySubject(query: string): Promise<Subject> {
   const apiUrl = `https://openlibrary.org/subjects/${encodeURIComponent(
     query
-  )}.json?&limit=8`;
+  )}.json?&limit=7`;
 
   try {
     const response = await fetch(apiUrl);
