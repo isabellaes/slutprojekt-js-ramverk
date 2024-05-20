@@ -7,7 +7,7 @@ import List from "../components/list/List";
 import Button from "../components/button/Button";
 import Modal from "../components/Modal/Modal";
 import Form from "../components/form/Form";
-import { useToggle } from "../lib/hooks/useToggleModal";
+import { useToggle } from "../lib/hooks/useToggle";
 import {
   calculateAverage,
   calculateTotal,
@@ -27,7 +27,7 @@ export default function Page() {
   const { open, toggle } = useToggle(false);
 
   const booksWithReviews = filterBooksWithReviews(books.readList);
-  const numbers = extractPageNumbersFromArray(books.readList);
+  const pageNumbersArray = extractPageNumbersFromArray(books.readList);
   const dispatch = useDispatch<AppDispatch>();
 
   function calculateAverageRating(): number {
@@ -48,13 +48,16 @@ export default function Page() {
         <h1 className={style.title}>Statistics</h1>
         <div className={style.counters}>
           <Counter number={books.readList.length} title="Read books"></Counter>
-          <Counter number={calculateTotal(numbers)} title="Total Pages" />
+          <Counter
+            number={calculateTotal(pageNumbersArray)}
+            title="Total Pages"
+          />
 
           <Counter number={booksWithReviews.length} title="Reviews"></Counter>
           <Counter
             number={
               calculateAverage(
-                calculateTotal(numbers),
+                calculateTotal(pageNumbersArray),
                 books.readList.length
               ) || 0
             }
@@ -66,7 +69,10 @@ export default function Page() {
           ></Counter>
         </div>
 
-        <h1 className={style.title}>Read books</h1>
+        <h1 className={style.title}>
+          Read books{" "}
+          <span className={style.lightText}>({books.readList.length})</span>
+        </h1>
 
         {books.readList.map((b) => (
           <List space="between">

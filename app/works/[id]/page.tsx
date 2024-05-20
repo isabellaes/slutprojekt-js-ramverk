@@ -19,7 +19,7 @@ import FavouriteButton from "@/app/components/favourite/FavouriteButton";
 import CardSkeleton from "@/app/components/skeletons/CardSkeleton";
 import ContentSkeleton from "@/app/components/skeletons/ContentSkeleton";
 import Snackbar from "@mui/material/Snackbar";
-import { useToggle } from "@/app/lib/hooks/useToggleModal";
+import { useToggle } from "@/app/lib/hooks/useToggle";
 
 export default function Page() {
   const params = useParams<{ id: string }>();
@@ -100,7 +100,7 @@ export default function Page() {
                     handleAddToReadList(book);
                     toggle();
                   }}
-                  title="Mark as finished"
+                  title="Mark as read"
                 />
               </div>
             </div>
