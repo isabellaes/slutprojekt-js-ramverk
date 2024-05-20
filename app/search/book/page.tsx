@@ -16,6 +16,7 @@ export default async function Page({
     subject: string;
   };
 }) {
+  //calculates offset for pagination
   const offset =
     searchParams.page === "0"
       ? searchParams.page
