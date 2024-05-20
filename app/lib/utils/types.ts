@@ -24,7 +24,7 @@ export type Book = {
   subjects: string[];
   title: string;
   number_of_pages?: number;
-  revies?: Review;
+  review?: Review;
   img_url?: string;
 };
 
@@ -49,7 +49,7 @@ export type Doc = {
 
 export type Review = {
   key: string;
-  rating: string;
+  rating: number;
   text: string;
 };
 

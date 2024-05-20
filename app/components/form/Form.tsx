@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import styles from "./form.module.scss";
 import CancelIcon from "@mui/icons-material/Cancel";
+import Rating from "@mui/material/Rating";
 
 type FormPropsType = {
   id: string;
@@ -13,7 +14,7 @@ type FormPropsType = {
 
 const Form = ({ id, handleClose }: FormPropsType) => {
   const [review, setReview] = useState<string>("");
-  const [rating, setRating] = useState<string>("");
+  const [rating, setRating] = useState<number | null>(0);
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -46,17 +47,10 @@ const Form = ({ id, handleClose }: FormPropsType) => {
           onChange={(e) => setReview(e.currentTarget.value)}
         />
         <label htmlFor="rating">Rating</label>
-        <input
-          type="range"
-          min={0}
-          max={10}
-          step={1}
-          name="rating"
-          id="rating"
-          onChange={(e) => setRating(e.currentTarget.value)}
-        />
 
-        <input type="submit" value="Submit" />
+        <Rating value={rating} onChange={(e, value) => setRating(value)} />
+
+        <input className={styles.submit} type="submit" value="Submit" />
       </form>
     </div>
   );

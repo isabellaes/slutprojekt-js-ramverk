@@ -18,5 +18,5 @@ export function extractPageNumbersFromArray(arr: Entry[] | Book[]): number[] {
 }
 
 export function filterBooksWithReviews(arr: Book[]): Book[] {
-  return arr.filter((b) => b.revies);
+  return arr.filter((b) => b.review);
 }

@@ -20,6 +20,7 @@ import { useState } from "react";
 import Counter from "../components/counter/Counter";
 import style from "./statistics.module.scss";
 import Link from "next/link";
+import Rating from "@mui/material/Rating";
 
 export default function Page() {
   const [selected, setSelected] = useState<string>("");
@@ -31,9 +32,9 @@ export default function Page() {
   const dispatch = useDispatch<AppDispatch>();
 
   function calculateAverageRating(): number {
-    const total = books.readList.reduce((total, book) => {
-      if (book.revies) {
-        return total + Number(book.revies.rating);
+    const total = booksWithReviews.reduce((total, book) => {
+      if (book.review) {
+        return total + book.review.rating;
       } else {
         return total;
       }
@@ -75,7 +76,7 @@ export default function Page() {
         </h1>
 
         {books.readList.map((b) => (
-          <List space="between">
+          <List>
             <div className={style.column}>
               <Link href={b.key} className={style.link}>
                 <img src={b.img_url} alt="" />
@@ -85,18 +86,18 @@ export default function Page() {
                 </div>
               </Link>
             </div>
-
-            {b.revies?.rating ? (
+            {b.review?.rating ? (
               <div className={style.review}>
                 <h3>Review</h3>
-                <p>Comment: {b.revies.text}</p>
-                <p>Rating: {b.revies.rating}/10</p>
+                <p>"{b.review.text}"</p>
+                <Rating name="read-only" value={b.review.rating} readOnly />
               </div>
             ) : (
               <></>
             )}
+
             <div className={style.buttons}>
-              {b.revies === undefined ? (
+              {b.review === undefined ? (
                 <Button
                   handleOnClick={() => {
                     setSelected(b.key);

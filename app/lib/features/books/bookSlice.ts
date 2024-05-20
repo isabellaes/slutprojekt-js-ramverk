@@ -38,7 +38,7 @@ export const bookSlice = createSlice({
         if (r.key === action.payload.key) {
           return {
             ...r,
-            revies: {
+            review: {
               key: action.payload.key,
               rating: action.payload.rating,
               text: action.payload.text,

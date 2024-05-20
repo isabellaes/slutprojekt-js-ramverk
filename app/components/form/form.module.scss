@@ -15,5 +15,14 @@
     @include FlexColumn;
     padding: 1em;
     gap: 1em;
+
+    .submit {
+      @include Button(#f97f04);
+    }
+
+    .submit:hover {
+      background-color: #f7891a;
+      box-shadow: -2px -8px 62px 5px rgba(254, 144, 0, 0.401);
+    }
   }
 }
