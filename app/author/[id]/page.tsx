@@ -84,13 +84,25 @@ export default function Page() {
             </div>
             <div>
               <h1>{author.name}</h1>
-              <p>{author.personal_name}</p>
+              <p>
+                <span className={style.bold}>Personal name: </span>{" "}
+                {author.personal_name}
+              </p>
+              <p>
+                <span className={style.bold}>Birth date: </span>{" "}
+                {author.birth_date}
+              </p>
               {author.bio ? (
                 <>
                   {typeof author.bio === "string" ? (
-                    <p>{author.bio}</p>
+                    <p>
+                      <span className={style.bold}>Bio: </span> {author.bio}
+                    </p>
                   ) : (
-                    <p>{author.bio.value}</p>
+                    <p>
+                      <span className={style.bold}>Bio: </span>{" "}
+                      {author.bio.value}
+                    </p>
                   )}
                 </>
               ) : (

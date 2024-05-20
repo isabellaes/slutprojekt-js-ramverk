@@ -11,6 +11,12 @@
     padding-top: 1em;
     padding-bottom: 0.5em;
   }
+  p {
+    padding-top: 1em;
+  }
+  .bold {
+    font-weight: bolder;
+  }
 
   .row {
     @include FlexRow;
