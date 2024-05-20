@@ -5,7 +5,7 @@ import Container from "@/app/components/container/Container";
 import PaginationBox from "@/app/components/pagination/Pagination";
 import style from "../searchResult.module.scss";
 import blankprofile from "../../images/blank-profile-picture-973460_640.png";
-import List from "@/app/components/list/List";
+import Box from "@/app/components/box/Box";
 
 export default async function Page({
   searchParams,
@@ -33,12 +33,12 @@ export default async function Page({
       <div className={style.content}>
         {data.docs.map((i) => (
           <Link key={i.key} href={`/author/${i.key}`}>
-            <List space="between">
+            <Box>
               <div>
                 <img src={blankprofile.src} alt="profile" />
                 <p>{i.name}</p>
               </div>
-            </List>
+            </Box>
           </Link>
         ))}
         <PaginationBox

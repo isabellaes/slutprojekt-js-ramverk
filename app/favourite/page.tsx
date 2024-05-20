@@ -5,7 +5,6 @@ import {
   removeBookFromFavourite,
   selectBooks,
 } from "@/app/lib/features/books/bookSlice";
-import List from "@/app/components/list/List";
 import Container from "@/app/components/container/Container";
 import Button from "@/app/components/button/Button";
 import { AppDispatch } from "@/app/lib/features/store";
@@ -15,6 +14,7 @@ import {
 } from "../lib/features/authors/authorSlice";
 import style from "./favourite.module.scss";
 import Link from "next/link";
+import Box from "../components/box/Box";
 
 export default function Page() {
   const books = useSelector(selectBooks);
@@ -31,7 +31,7 @@ export default function Page() {
       {books.favouriteBooks.length != 0 ? (
         <>
           {books.favouriteBooks.map((b) => (
-            <List space="between" key={b.key}>
+            <Box key={b.key}>
               <Link href={b.key} className={style.link}>
                 <div className={style.row}>
                   <img src={b.img_url} alt="cover" />
@@ -48,14 +48,14 @@ export default function Page() {
                   color="error"
                 ></Button>
               </div>
-            </List>
+            </Box>
           ))}
         </>
       ) : (
         <>
-          <List space="between">
+          <Box>
             <p>No favourites</p>
-          </List>
+          </Box>
         </>
       )}
 
@@ -66,7 +66,7 @@ export default function Page() {
       {authors.length != 0 ? (
         <>
           {authors.map((a) => (
-            <List space="between" key={a.key}>
+            <Box key={a.key}>
               <Link
                 href={a.key.replace("/authors/", "/author/")}
                 className={style.link}
@@ -88,14 +88,14 @@ export default function Page() {
                   color="error"
                 ></Button>
               </div>
-            </List>
+            </Box>
           ))}
         </>
       ) : (
         <>
-          <List space="between">
+          <Box>
             <p>No favourites</p>
-          </List>
+          </Box>
         </>
       )}
     </Container>

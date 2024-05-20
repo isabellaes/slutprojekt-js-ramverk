@@ -5,7 +5,7 @@ import Container from "@/app/components/container/Container";
 import PaginationBox from "@/app/components/pagination/Pagination";
 import style from "../searchResult.module.scss";
 import defaultImg from "../../images/No-Image-Placeholder.svg.png";
-import List from "@/app/components/list/List";
+import Box from "@/app/components/box/Box";
 
 export default async function Page({
   searchParams,
@@ -31,7 +31,7 @@ export default async function Page({
       <div className={style.content}>
         {data.docs.map((i) => (
           <Link key={i.key} href={i.key}>
-            <List space="between">
+            <Box>
               <div>
                 {i.cover_i ? (
                   <img
@@ -43,7 +43,7 @@ export default async function Page({
                 )}
                 <p>{i.title}</p>
               </div>
-            </List>
+            </Box>
           </Link>
         ))}
 

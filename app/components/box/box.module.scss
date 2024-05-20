@@ -1,7 +1,7 @@
 @import "../../style/mixin.scss";
 @import "../../style/variables.scss";
 
-.list {
+.box {
   @include FlexRow;
   padding: 1em;
   gap: 1em;

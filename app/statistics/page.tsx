@@ -3,7 +3,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { selectBooks } from "@/app/lib/features/books/bookSlice";
 import Container from "../components/container/Container";
-import List from "../components/list/List";
 import Button from "../components/button/Button";
 import Modal from "../components/Modal/Modal";
 import Form from "../components/form/Form";
@@ -21,6 +20,7 @@ import Counter from "../components/counter/Counter";
 import style from "./statistics.module.scss";
 import Link from "next/link";
 import Rating from "@mui/material/Rating";
+import Box from "../components/box/Box";
 
 export default function Page() {
   const [selected, setSelected] = useState<string>("");
@@ -76,7 +76,7 @@ export default function Page() {
         </h1>
 
         {books.readList.map((b) => (
-          <List>
+          <Box>
             <div className={style.column}>
               <Link href={b.key} className={style.link}>
                 <img src={b.img_url} alt="" />
@@ -115,7 +115,7 @@ export default function Page() {
                 handleOnClick={() => dispatch(removeBookFromReadList(b.key))}
               ></Button>
             </div>
-          </List>
+          </Box>
         ))}
 
         {open && selected ? (
