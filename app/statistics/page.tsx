@@ -76,8 +76,8 @@ export default function Page() {
         </h1>
 
         {books.readList.map((b) => (
-          <Box>
-            <div className={style.column} key={b.key}>
+          <Box key={b.key}>
+            <div className={style.column}>
               <Link href={b.key} className={style.link}>
                 <img src={b.img_url} alt="" />
                 <div className={style.text}>
@@ -87,7 +87,7 @@ export default function Page() {
               </Link>
             </div>
             {b.review?.rating ? (
-              <div className={style.review}>
+              <div className={style.review} key={b.key}>
                 <h3>Review</h3>
                 <p>&quot;{b.review.text}&quot;</p>
                 <Rating name="read-only" value={b.review.rating} readOnly />
