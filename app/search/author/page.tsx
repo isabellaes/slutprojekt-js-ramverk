@@ -28,7 +28,9 @@ export default async function Page({
 
   return (
     <Container>
-      <h1 className={style.title}>Search results for "{searchParams.query}"</h1>
+      <h1 className={style.title}>
+        Search results for &quot;{searchParams.query}&quot;
+      </h1>
       <p className={style.title}>Total: {data.numFound}</p>
 
       <div className={style.content}>
