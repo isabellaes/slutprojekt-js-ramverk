@@ -5,6 +5,7 @@ import Image from "next/image";
 import logo from "./biblioteket.png";
 import Search from "../search/Search";
 import styles from "./header.module.scss";
+import { Suspense } from "react";
 
 const Header = () => {
   return (
@@ -27,7 +28,9 @@ const Header = () => {
         </Link>
       </nav>
       <div>
-        <Search />
+        <Suspense>
+          <Search />
+        </Suspense>
       </div>
     </header>
   );
